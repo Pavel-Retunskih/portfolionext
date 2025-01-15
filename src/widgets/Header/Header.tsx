@@ -14,7 +14,7 @@ console.log(currentPath == '/hello')
         <nav className={'flex h-[45px]'}>
           <div className={'flex  w-[300px] border-r-2 border-r-lines py-4 text-nowrap'}>
             <h1 className={'text-base'}>
-              micheal-weaver</h1>
+              Pavel_Retunskih</h1>
           </div>
           <div className={'flex items-center justify-between w-full'}>
             <div className={'flex items-center'}>
