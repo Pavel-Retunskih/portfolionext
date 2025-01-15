@@ -3,6 +3,7 @@ import { Fira_Code } from "next/font/google";
 import "./globals.css";
 import {Header} from "@/widgets/Header/Header";
 import {Footer} from "@/widgets/Footer/Footer";
+import {ReactNode} from "react";
 
 const firaCode = Fira_Code({
   variable: "--firaCode",
@@ -12,7 +13,7 @@ const firaCode = Fira_Code({
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
     <html lang="en">
