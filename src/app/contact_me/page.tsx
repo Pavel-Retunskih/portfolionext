@@ -1,5 +1,5 @@
 'use client'
-import '../../styles/codeBox.css'
+
 import {useEffect, useState} from "react";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import {gruvboxDark} from "react-syntax-highlighter/dist/esm/styles/hljs"
