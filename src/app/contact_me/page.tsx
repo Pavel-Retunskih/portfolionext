@@ -11,7 +11,7 @@ export default function ContactMePage(){
     <form className={'flex flex-col gap-8'}>
       <div className={'flex flex-col gap-1'}>
         <label htmlFor="name" className={'text-secondary-grey'}>_name:</label>
-        <input type="text" id={'name'} name={'name'} className={'w-[327px] border border-lines bg-primary-blue'}value={name} onChange={(e) => setName(e.target.value)} />
+        <input type="text" id={'name'} name={'name'} className={'w-[327px] border border-lines bg-primary-blue'} value={name} onChange={(e) => setName(e.target.value)} />
       </div>
       <div className={'flex flex-col gap-1'}>
         <label htmlFor={'email'} className={'text-secondary-grey'}>_email:</label>
