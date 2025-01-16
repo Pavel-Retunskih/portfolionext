@@ -1,13 +1,15 @@
 'use client'
-import {useState} from "react";
-
+import '../../styles/codeBox.css'
+import {useEffect, useState} from "react";
+import SyntaxHighlighter from "react-syntax-highlighter";
+import {gruvboxDark} from "react-syntax-highlighter/dist/esm/styles/hljs"
 export default function ContactMePage(){
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
 
-  const date = new Date();
-  return (<div>
+
+  return (<div className={'flex justify-around ml-[300px]'}>
     <form className={'flex flex-col gap-8'}>
       <div className={'flex flex-col gap-1'}>
         <label htmlFor="name" className={'text-secondary-grey'}>_name:</label>
@@ -24,13 +26,40 @@ export default function ContactMePage(){
       <button type={'submit'}>submit-message</button>
     </form>
     <div>
-      <div>
-        <span>{name}</span>
-      </div>
-      <div><span>{email}</span></div>
-      <div><span>{message}</span></div>
-      <div>{date.toDateString()}</div>
-
+  <CodeBlock name={name} email={email} message={message} />
     </div>
   </div>)
+}
+
+function CodeBlock({name, message,email}:{name:string, email:string ,message: string}) {
+  const customStyle = {
+    background: 'transparent',
+  };
+  const [currentDate, setCurrentDate] = useState('');
+
+  useEffect(() => {
+
+    const date = new Date();
+    const formattedDate = date.toLocaleString('en-GB', { weekday: 'short', day: '2-digit', month: 'short' });
+    setCurrentDate(formattedDate);
+  }, []);
+  const text = `
+const button = document.querySelector('#sendBtn');
+
+const message = {
+  name: "${name}",
+  email: "${email}",
+  message: "${message}",
+  date: "${currentDate}"
+};
+
+button.addEventListener('click', () => {
+  form.send(message);
+});
+`;
+  return  <div className={'w-[600px]'}>
+    <SyntaxHighlighter language="javascript"  customStyle={customStyle} style={gruvboxDark} wrapLongLines showLineNumbers>
+      {text}
+    </SyntaxHighlighter>
+  </div>
 }
