@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function HelloPage(){
   return (
-      <div className={'flex-col gap-8 lg:flex-row max-w-[1160px] w-full flex items-center  lg:my-[180px]' +
+      <div className={'flex-col gap-8 lg:flex-row max-w-[1160px] w-full flex items-center lg:my-[180px]' +
           ' mx-auto justify-between'}>
     <div className={'md:mt-14'}>
       <div>
@@ -19,11 +19,10 @@ export default function HelloPage(){
           className={'text-accent-aqua'}>githubLink</span> = <span
           className={'text-accent-pink'}><Link target={'_blank'} href={'https://github.com/Pavel-Retunskih'}>&#34;https://github.com/Pavel-Retunskih&#34;</Link></span></p>
     </div>
-    <div className={'w-[510px] h-[475px] border-[1px] border-[#0C1616] bg-gradient-to-br' +
-        ' from-[#175553] to-[#43D9AD] backdrop-blur-xl opacity-60 shadow-inner shadow-white px-[30px] py-[35px]'+' ' +
-        'hidden sm:block'}>
-  <div className={'bg-black opacity-75 w-[240px] h-[405px]'}>
-  </div>
+    <div className={'hidden md:block w-[510px] h-[475px] border-[1px] border-[#0C1616] bg-gradient-to-br' +
+        ' from-[#175553] to-[#43D9AD] backdrop-blur-xl opacity-60 shadow-inner shadow-white px-[30px] py-[35px]'}>
+    <div className={'bg-black opacity-75 w-[240px] h-[405px]'}>
+    </div>
     </div>
 
   </div>)
