@@ -23,7 +23,8 @@ export default function RootLayout({
       >
       <Analytics/>
       <div className={'flex items-center justify-center'}>
-        <div className={'max-w-[1782px] w-full m-[70px]  border-2 border-lines bg-primary-blue rounded-s px-5'}>
+        <div className={'m-[15px] max-w-[1782px] w-full md:m-[70px]  border-2 border-lines bg-primary-blue' +
+            ' rounded-s px-5'}>
           <Header/>
           {children}
           <Footer/>
