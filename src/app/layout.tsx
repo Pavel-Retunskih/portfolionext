@@ -3,8 +3,8 @@ import { Fira_Code } from "next/font/google";
 import "./globals.css";
 import {Header} from "@/widgets/Header/Header";
 import {Footer} from "@/widgets/Footer/Footer";
-import {ReactNode, useEffect} from "react";
-import {useRouter} from "next/router";
+import {ReactNode} from "react";
+
 
 const firaCode = Fira_Code({
   variable: "--firaCode",
@@ -16,12 +16,6 @@ export default function RootLayout({
 }: Readonly<{
   children: ReactNode;
 }>) {
-  const router = useRouter();
-
-  useEffect(()=>{
-    router.push('/hello')
-  },[router])
-
   return (
     <html lang="en">
       <body
