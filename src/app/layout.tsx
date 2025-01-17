@@ -4,7 +4,7 @@ import "./globals.css";
 import {Header} from "@/widgets/Header/Header";
 import {Footer} from "@/widgets/Footer/Footer";
 import {ReactNode} from "react";
-
+import { Analytics } from "@vercel/analytics/react"
 
 const firaCode = Fira_Code({
   variable: "--firaCode",
@@ -21,6 +21,7 @@ export default function RootLayout({
       <body
         className={`${firaCode.variable} w-full h-full bg-background mx-auto`}
       >
+      <Analytics/>
       <div className={'flex items-center justify-center'}>
         <div className={'max-w-[1782px] w-full m-[70px]  border-2 border-lines bg-primary-blue rounded-s px-5'}>
           <Header/>
