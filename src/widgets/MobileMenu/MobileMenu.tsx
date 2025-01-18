@@ -1,35 +1,34 @@
 'use client'
 import {Burger} from "@/components/Burger";
 import {Dispatch, SetStateAction, useEffect} from "react";
-import {usePathname, useRouter} from "next/navigation";
+import {usePathname} from "next/navigation";
+import Link from "next/link";
 
-export function MobileMenu({isOpen, setIsOpen}:{isOpen:boolean, setIsOpen: Dispatch<SetStateAction<boolean>>}) {
-  const router = useRouter();
+type MobileMenuProps = {
+  isOpen:boolean
+  setIsOpen: Dispatch<SetStateAction<boolean>>
+}
+
+export function MobileMenu({isOpen, setIsOpen}:MobileMenuProps) {
   const pathName = usePathname()
-
-  const handleClick = async (path:string) => {
-     router.push(`/${path}`)
-  }
 
   useEffect(() => {
     setIsOpen(false);
   }, [pathName, setIsOpen]);
 
   return (
-      <div className={'flex flex-col w-full max-w-screen-md border-b border-b-lines md:hidden'}>
-        <div className={'flex justify-between items-center h-[50px] p-[18px]'}>
-          <span>Pavel_Retunskih</span>
+      <div className={'flex flex-col w-full max-w-screen-md md:hidden'}>
+        <div className={'flex justify-between items-center border-b border-b-lines h-[50px] p-[18px]'}>
+          <span className={'text-secondary-grey'}>Pavel_Retunskih</span>
           <Burger isOpen={isOpen} setIsOpen={setIsOpen}/>
         </div>
 
-    {isOpen && <div className={' w-[94%] h-full mx-auto bg-primary-blue mt-[55px] flex' +
-        ' flex-col gap-[35px]' +
-        ' items-center'}>
-      <ul>
-        <li onClick={()=>handleClick('hello') }>_hello</li>
-        <li onClick={()=>handleClick('about_me')} >_about-me</li>
-        <li onClick={()=>handleClick('projects')}>_projects</li>
-        <li onClick={()=>handleClick('contact_me')}>_contact-me</li>
+    {isOpen && <div className={' w-full h-[80vh] mx-auto bg-primary-blue'}>
+      <ul className={'flex flex-col items-start'}>
+        <li className={'border-b border-b-lines w-full pl-5 py-4'}><Link href={'/hello'}>_hello</Link></li>
+        <li className={'border-b border-b-lines w-full pl-5 py-4'}><Link href={'/about_me'}>_about-me</Link></li>
+        <li className={'border-b border-b-lines w-full pl-5 py-4'}><Link href={'/projects'}>_projects</Link></li>
+        <li className={'border-b border-b-lines w-full pl-5 py-4'}><Link href={'/contact_me'}>_contact-me</Link></li>
       </ul>
     </div>}
   </div>)
