@@ -8,7 +8,7 @@ export function MobileMenu({isOpen, setIsOpen}:{isOpen:boolean, setIsOpen: Dispa
   const pathName = usePathname()
 
   const handleClick = async (path:string) => {
-    await router.push(`/${path}`)
+     router.push(`/${path}`)
   }
 
   useEffect(() => {
