@@ -9,7 +9,8 @@ export default function ContactMePage(){
   const [message, setMessage] = useState('');
 
 
-  return (<div className={'flex justify-around ml-[300px]'}>
+  return (<div className={'flex sm:flex-col justify-around md:ml-[300px]'}>
+    <h3 className={'hidden sm:flex items-center justify-start py-5 pl-4'}>_contact-me</h3>
     <form className={'flex flex-col gap-8'}>
       <div className={'flex flex-col gap-1'}>
         <label htmlFor="name" className={'text-secondary-grey'}>_name:</label>
@@ -25,7 +26,7 @@ export default function ContactMePage(){
       </div>
       <button type={'submit'}>submit-message</button>
     </form>
-    <div>
+    <div className={'hidden md:block'}>
   <CodeBlock name={name} email={email} message={message} />
     </div>
   </div>)
