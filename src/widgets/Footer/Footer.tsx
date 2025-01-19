@@ -5,19 +5,25 @@ import LinkedInIcon from "@/assets/svg/LinkedInIcon";
 export function Footer() {
   return (
       <div className={'h-[50px] w-full flex items-center justify-between'}>
-        <div className={'flex items-center gap-3'}>
-          <p>find me in:</p>
-          <div className={'flex items-center px-5 border-x h-[50px] border-x-lines'}>
-            <TelegramIcon className={'hover:text-secondary-white'}/>
-          </div>
-          <div className={'flex items-center px-5 border-r h-[50px] border-r-lines'}>
-            <LinkedInIcon className={'hover:text-secondary-white'}/>
+        <div className={'flex h-full items-center gap-3'}>
+          <p className={'pr-[65px]'}>find me in:</p>
+          <div className={'flex h-full'}>
+            <div className={'flex items-center px-5 border-x h-full border-x-lines'}>
+              <TelegramIcon className={'hover:text-secondary-white'}/>
+            </div>
+            <div className={'flex items-center px-5 border-r h-full border-r-lines'}>
+              <LinkedInIcon className={'hover:text-secondary-white'}/>
+            </div>
           </div>
 
+
         </div>
-        <div className={'flex items-center gap-2.5'}>
-          <span>@username</span>
-          <GithubIcon className={'hover:text-secondary-white'}/>
+        <div className={'flex h-full items-center border-l border-l-lines pl-6 gap-2.5'}>
+          <span className={'hidden md:block'}>@username</span>
+          <div>
+            <GithubIcon className={'hover:text-secondary-white'}/>
+          </div>
+
         </div>
       </div>
 
