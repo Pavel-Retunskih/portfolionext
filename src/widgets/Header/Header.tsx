@@ -4,12 +4,13 @@ import Link from "next/link";
 import {usePathname} from "next/navigation";
 
 export function Header() {
-const currentPath = usePathname()
-console.log(currentPath == '/hello')
+  const currentPath = usePathname()
+  console.log(currentPath == '/hello')
   const linkClass = 'text-[16px] border-r-2 border-r-lines text-center' +
       ' py-4 px-8'
   const activeLinkClass = 'border-b-2 border-b-accent-orange'
-  return(
+
+  return (
       <header className={'hidden md:block' + ' ' + 'mt-2.5 w-full'}>
         <nav className={'flex h-[45px]'}>
           <div className={'flex  w-[300px] border-r-2 border-r-lines py-4 text-nowrap'}>
