@@ -6,7 +6,7 @@ export function Footer() {
   return (
       <div className={'h-[50px] w-full flex items-center justify-between'}>
         <div className={'flex h-full items-center gap-3'}>
-          <p className={'pr-[65px]'}>find me in:</p>
+          <p className={'max-w-[189px] text-nowrap'}>find me in:</p>
           <div className={'flex h-full'}>
             <div className={'flex items-center px-5 border-x h-full border-x-lines'}>
               <TelegramIcon className={'hover:text-secondary-white'}/>
