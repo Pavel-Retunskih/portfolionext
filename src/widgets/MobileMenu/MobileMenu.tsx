@@ -1,15 +1,16 @@
 'use client'
-import {Burger} from "@/components/Burger";
+
 import {Dispatch, SetStateAction, useEffect} from "react";
 import {usePathname} from "next/navigation";
 import Link from "next/link";
+import {Burger} from "@/components/Burger/Burger";
 
 type MobileMenuProps = {
-  isOpen:boolean
+  isOpen: boolean
   setIsOpen: Dispatch<SetStateAction<boolean>>
 }
 
-export function MobileMenu({isOpen, setIsOpen}:MobileMenuProps) {
+export function MobileMenu({isOpen, setIsOpen}: MobileMenuProps) {
   const pathName = usePathname()
 
   useEffect(() => {
@@ -23,13 +24,14 @@ export function MobileMenu({isOpen, setIsOpen}:MobileMenuProps) {
           <Burger isOpen={isOpen} setIsOpen={setIsOpen}/>
         </div>
 
-    {isOpen && <div className={' w-full h-[80vh] mx-auto bg-primary-blue'}>
-      <ul className={'flex flex-col items-start'}>
-        <li className={'border-b border-b-lines w-full pl-5 py-4'}><Link href={'/hello'}>_hello</Link></li>
-        <li className={'border-b border-b-lines w-full pl-5 py-4'}><Link href={'/about_me'}>_about-me</Link></li>
-        <li className={'border-b border-b-lines w-full pl-5 py-4'}><Link href={'/projects'}>_projects</Link></li>
-        <li className={'border-b border-b-lines w-full pl-5 py-4'}><Link href={'/contact_me'}>_contact-me</Link></li>
-      </ul>
-    </div>}
-  </div>)
+        {isOpen && <div className={' w-full h-[80vh] mx-auto bg-primary-blue'}>
+          <ul className={'flex flex-col items-start'}>
+            <li className={'border-b border-b-lines w-full pl-5 py-4'}><Link href={'/hello'}>_hello</Link></li>
+            <li className={'border-b border-b-lines w-full pl-5 py-4'}><Link href={'/about_me'}>_about-me</Link></li>
+            <li className={'border-b border-b-lines w-full pl-5 py-4'}><Link href={'/projects'}>_projects</Link></li>
+            <li className={'border-b border-b-lines w-full pl-5 py-4'}><Link href={'/contact_me'}>_contact-me</Link>
+            </li>
+          </ul>
+        </div>}
+      </div>)
 }

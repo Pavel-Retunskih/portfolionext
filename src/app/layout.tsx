@@ -12,9 +12,7 @@ const firaCode = Fira_Code({
   subsets: ["latin"],
 });
 
-export default function RootLayout({
-                                     children,
-                                   }: Readonly<{
+export default function RootLayout({children}: Readonly<{
   children: ReactNode;
 }>) {
   const [open, setOpen] = useState<boolean>(false);
