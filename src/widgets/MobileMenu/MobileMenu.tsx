@@ -7,21 +7,21 @@ import {Burger} from "@/components/Burger/Burger";
 
 type MobileMenuProps = {
   isOpen: boolean
-  setIsOpen: Dispatch<SetStateAction<boolean>>
+  setIsOpenAction: Dispatch<SetStateAction<boolean>>
 }
 
-export function MobileMenu({isOpen, setIsOpen}: MobileMenuProps) {
+export function MobileMenu({isOpen, setIsOpenAction}: MobileMenuProps) {
   const pathName = usePathname()
 
   useEffect(() => {
-    setIsOpen(false);
-  }, [pathName, setIsOpen]);
+    setIsOpenAction(false);
+  }, [pathName, setIsOpenAction]);
 
   return (
       <div className={'flex flex-col w-full max-w-screen-md md:hidden'}>
         <div className={'flex justify-between items-center border-b border-b-lines h-[50px] p-[18px]'}>
           <span className={'text-secondary-grey'}>Pavel_Retunskih</span>
-          <Burger isOpen={isOpen} setIsOpen={setIsOpen}/>
+          <Burger isOpen={isOpen} setIsOpenAction={setIsOpenAction}/>
         </div>
 
         {isOpen && <div className={' w-full h-[80vh] mx-auto bg-primary-blue'}>

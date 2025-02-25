@@ -1,8 +1,9 @@
 'use client'
 
 import {Accordion} from "radix-ui";
+import {memo} from "react";
 
-export function HobbyInfo() {
+export const HobbyInfo = memo(() => {
 
   return (
       <Accordion.Root type={'single'} collapsible>
@@ -35,4 +36,5 @@ export function HobbyInfo() {
       </Accordion.Root>
   )
 
-}
+})
+HobbyInfo.displayName = 'HobbyInfo'

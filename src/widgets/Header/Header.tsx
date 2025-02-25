@@ -2,14 +2,18 @@
 
 import Link from "next/link";
 import {usePathname} from "next/navigation";
+import {memo, useMemo} from "react";
 
-export function Header() {
+export const Header = memo(() => {
   const currentPath = usePathname()
-  console.log(currentPath == '/hello')
   const linkClass = 'text-[16px] border-r-2 border-r-lines flex items-center h-full ' +
       ' px-8'
   const activeLinkClass = 'border-b-2 border-b-accent-orange'
-
+  console.log('Header render')
+  const getToggleItemClass = useMemo(() => {
+    return (path: string) =>
+        `${currentPath === path ? activeLinkClass : ' '}`;
+  }, [currentPath]);
   return (
       <header className={'hidden md:block' + ' ' + ' w-full'}>
         <nav className={'flex h-[45px] w-full'}>
@@ -20,15 +24,15 @@ export function Header() {
           <div className={'flex items-center flex-grow h-full justify-between'}>
             <div className={'flex h-full items-center'}>
               <Link href="/hello"
-                    className={(currentPath === '/hello' ? activeLinkClass : ' ') + " " + linkClass}>_hello</Link>
+                    className={getToggleItemClass('/hello') + " " + linkClass}>_hello</Link>
               <Link href="/about_me"
-                    className={(currentPath === '/about_me' ? activeLinkClass : ' ') + " " + linkClass + ' ' + 'text-nowrap'}>_about-me</Link>
+                    className={getToggleItemClass('/about_me') + " " + linkClass + ' ' + 'text-nowrap'}>_about-me</Link>
               <Link href="/projects"
-                    className={(currentPath === '/projects' ? activeLinkClass : ' ') + " " + linkClass + ' ' + 'text-nowrap'}>_projects</Link>
+                    className={getToggleItemClass('/projects') + " " + linkClass + ' ' + 'text-nowrap'}>_projects</Link>
             </div>
             <div className={'flex items-center h-full'}>
               <Link href="/contact_me"
-                    className={(currentPath === '/contact_me' ? activeLinkClass : ' ') + '   text-[16px] border-l border-l-lines flex items-center h-full  px-8'}>contact-me</Link>
+                    className={getToggleItemClass('/contact_me') + '   text-[16px] border-l border-l-lines flex items-center h-full  px-8'}>contact-me</Link>
             </div>
           </div>
 
@@ -36,4 +40,5 @@ export function Header() {
 
       </header>
   )
-}
+})
+Header.displayName = 'Header'

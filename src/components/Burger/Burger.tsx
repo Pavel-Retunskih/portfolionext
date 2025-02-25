@@ -4,12 +4,12 @@ import {Dispatch, SetStateAction} from "react";
 
 type BurgerProps = {
   isOpen: boolean
-  setIsOpen: Dispatch<SetStateAction<boolean>>
+  setIsOpenAction: Dispatch<SetStateAction<boolean>>
 }
 
-export function Burger({isOpen, setIsOpen}:BurgerProps) {
-const handleClick = () =>{
-  setIsOpen((isOpen)=>!isOpen)
+export function Burger({isOpen, setIsOpenAction}: BurgerProps) {
+  const handleClick = () => {
+    setIsOpenAction((isOpen) => !isOpen)
   }
   return (
       <button onClick={handleClick} className={'flex flex-col justify-center items-center'}>

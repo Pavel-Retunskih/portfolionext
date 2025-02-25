@@ -1,8 +1,9 @@
 'use client'
 
 import {Accordion} from "radix-ui";
+import {memo} from "react";
 
-export function ProfessionalInfo() {
+export const ProfessionalInfo = memo(() => {
   return (
       <Accordion.Root type={'single'} collapsible>
         <Accordion.Item value={'experience'}>
@@ -48,4 +49,5 @@ export function ProfessionalInfo() {
         </Accordion.Item>
       </Accordion.Root>
   )
-}
+})
+ProfessionalInfo.displayName = 'ProfessionalInfo'
