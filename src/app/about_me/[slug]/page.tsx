@@ -2,7 +2,7 @@ export default async function AboutPage({params}: { params: Promise<{ slug: stri
   const slug = (await params).slug
   let data
   try {
-    const res = await fetch('http://localhost:3000/api', {method: 'POST', body: JSON.stringify({title: slug})})
+    const res = await fetch('https://re-tune.xyz/api', {method: 'POST', body: JSON.stringify({title: slug})})
     data = await res.json()
     console.log(data.body.page.description)
   } catch (error) {
