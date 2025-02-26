@@ -8,14 +8,14 @@ async function getPageContent({title}:{title: string}) {
     return await res.json()
 }
 
-export async function generateStaticParams(){
-    if(!URL){
-        throw new Error('NEXT_PUBLIC_API_URL is not defined')
-    }
-    const res = await fetch(URL,{method: 'POST',body:JSON.stringify({})})
-    const data = await res.json()
-    return data.body.pages.map((page: { title: string }) => ({slug: page.title}))
-}
+// export async function generateStaticParams(){
+//     if(!URL){
+//         throw new Error('NEXT_PUBLIC_API_URL is not defined')
+//     }
+//     const res = await fetch(URL,{method: 'POST',body:JSON.stringify({})})
+//     const data = await res.json()
+//     return data.body.pages.map((page: { title: string }) => ({slug: page.title}))
+// }
 
 export default async function AboutPage({params}: { params: Promise<{ slug: string }>}) {
     const {slug} =  await params
