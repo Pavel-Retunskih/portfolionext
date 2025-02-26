@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
+    "build:dev": "cross-env NODE_ENV=development next build",
+    "start:dev": "next start",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
