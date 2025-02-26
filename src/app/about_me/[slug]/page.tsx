@@ -24,7 +24,11 @@ export default async function AboutPage({params}: { params: Promise<{ slug: stri
     throw new Error('NEXT_PUBLIC_API_URL is not defined')
   }
   const res = await fetch(`${URL}/api/${slug}`, {method: 'GET'})
+  if (!res.ok) {
+    throw new Error(`HTTP error! status: ${res.status}`);
+  }
   const data = await res.json()
+
   return (<div className={'w-full max-w-[624px] border-r-2 pl-6 border-r-lines'}>
     {data.pageData.description}
   </div>)
