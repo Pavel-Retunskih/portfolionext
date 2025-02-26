@@ -1,9 +1,8 @@
-'use client'
 import {Fira_Code} from "next/font/google";
 import "./globals.css";
 import {Header} from "@/widgets/Header/Header";
 import {Footer} from "@/widgets/Footer/Footer";
-import {ReactNode, useCallback, useState} from "react";
+import {ReactNode} from "react";
 import {Analytics} from "@vercel/analytics/react"
 import {MobileMenu} from "@/widgets/MobileMenu/MobileMenu";
 import {PathnameProvider} from "@/utils/PathnameProvider/PathnameProvider";
@@ -16,8 +15,6 @@ const firaCode = Fira_Code({
 export default function RootLayout({children}: Readonly<{
   children: ReactNode;
 }>) {
-  const [open, setOpen] = useState<boolean>(false);
-  const openMobileMenuHandler = useCallback(setOpen, [setOpen])
   console.log('Root layout render');
   return (
       <html lang="en">
@@ -30,8 +27,8 @@ export default function RootLayout({children}: Readonly<{
             ' rounded'}>
           <PathnameProvider>
             <Header/>
-            <MobileMenu setIsOpenAction={openMobileMenuHandler} isOpen={open}/>
-            {!open && children}
+            <MobileMenu/>
+            {children}
             <Footer/>
           </PathnameProvider>
 
