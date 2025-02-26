@@ -3,17 +3,17 @@
 import {Accordion} from "radix-ui";
 import FolderIcon from "@/assets/svg/FolderIcon";
 import ArrowIcon from "@/assets/svg/ArrowIcon";
-import {memo, useState} from "react";
+import {memo} from "react";
 import Link from "next/link";
 
 export const PersonalInfo = memo(() => {
-  const [value, setValue] = useState<string>('bio')
+
   return (
-      <Accordion.Root type={'single'} collapsible className={'p-3'} onValueChange={setValue} defaultValue={value}>
+      <Accordion.Root type={'single'} collapsible className={'p-3'} defaultValue={'bio'}>
         <Accordion.Item value={'bio'}>
-          <Accordion.Trigger className={'flex gap-2 items-center'}>
+          <Accordion.Trigger className={'flex gap-2 items-center group'}>
             <ArrowIcon
-                className={`transition-transform duration-300 ease-[cubic-bezier(0.87,_0,_0.13,_1)] ${value === 'bio' ? 'rotate-90' : 'rotate-0'}`}/>
+                className={`transition-transform duration-300 ease-[cubic-bezier(0.87,_0,_0.13,_1)] group-data-[state=open]:rotate-90`}/>
             <FolderIcon
                 className={'text-accent-pink'}/>bio</Accordion.Trigger>
           <Accordion.Content
@@ -29,9 +29,9 @@ export const PersonalInfo = memo(() => {
           </Accordion.Content>
         </Accordion.Item>
         <Accordion.Item value={'interests'}>
-          <Accordion.Trigger className={'flex gap-2 items-center'}>
+          <Accordion.Trigger className={'flex gap-2 items-center group'}>
             <ArrowIcon
-                className={`transition-transform duration-300 ease-[cubic-bezier(0.87,_0,_0.13,_1)] ${value === 'interests' ? 'rotate-90' : 'rotate-0'}`}/>
+                className={`transition-transform duration-300 ease-[cubic-bezier(0.87,_0,_0.13,_1)] group-data-[state=open]:rotate-90`}/>
             <FolderIcon
                 className={'text-accent-aqua'}/>
             interests</Accordion.Trigger>
@@ -48,9 +48,9 @@ export const PersonalInfo = memo(() => {
           </Accordion.Content>
         </Accordion.Item>
         <Accordion.Item value={'education'}>
-          <Accordion.Trigger className={'flex gap-2 items-center'}>
+          <Accordion.Trigger className={'flex gap-2 items-center group'}>
             <ArrowIcon
-                className={`transition-transform duration-300 ease-[cubic-bezier(0.87,_0,_0.13,_1)] ${value === 'education' ? 'rotate-90' : 'rotate-0'}`}/>
+                className={`transition-transform duration-300 ease-[cubic-bezier(0.87,_0,_0.13,_1)] group-data-[state=open]:rotate-90`}/>
             <FolderIcon
                 className={'text-accent-orange'}/>education</Accordion.Trigger>
           <Accordion.Content
