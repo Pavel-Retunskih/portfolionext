@@ -1,7 +1,6 @@
 'use client'
 
 import {Dispatch, SetStateAction, useEffect} from "react";
-import {usePathname} from "next/navigation";
 import Link from "next/link";
 import {Burger} from "@/components/Burger/Burger";
 
@@ -11,12 +10,12 @@ type MobileMenuProps = {
 }
 
 export function MobileMenu({isOpen, setIsOpenAction}: MobileMenuProps) {
-  const pathName = usePathname()
+
 
   useEffect(() => {
     setIsOpenAction(false);
-  }, [pathName, setIsOpenAction]);
-
+  }, [setIsOpenAction]);
+  console.log('Mobile menu render');
   return (
       <div className={'flex flex-col w-full max-w-screen-md md:hidden'}>
         <div className={'flex justify-between items-center border-b border-b-lines h-[50px] p-[18px]'}>
