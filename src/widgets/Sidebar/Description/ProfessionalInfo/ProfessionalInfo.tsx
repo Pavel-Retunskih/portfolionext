@@ -2,13 +2,23 @@
 
 import {Accordion} from "radix-ui";
 import {memo} from "react";
+import {AccordionItem, AccordionRoot} from "@/components/Accordion/Accordion";
+import {AccordionContent, AccordionTrigger} from "@radix-ui/react-accordion";
+import {LinkItem, List, ListItem, NavMenuRoot} from "@/components/NavMenu/NavMenu";
 
 export const ProfessionalInfo = memo(() => {
   return (
-      <Accordion.Root type={'single'} collapsible>
-        <Accordion.Item value={'experience'}>
-          <Accordion.Trigger>experience</Accordion.Trigger>
-          <Accordion.Content>
+      <AccordionRoot type={'single'} collapsible>
+        <AccordionItem value={'experience'}>
+          <AccordionTrigger>experience</AccordionTrigger>
+          <AccordionContent>
+            <NavMenuRoot>
+              <List>
+                <ListItem>
+                  <LinkItem href={'/about_me/who_i_am/'}>who am I</LinkItem>
+                </ListItem>
+              </List>
+            </NavMenuRoot>
             <ul>
               <li>
                 <button>who am I</button>
@@ -17,8 +27,8 @@ export const ProfessionalInfo = memo(() => {
                 <button>where am I from</button>
               </li>
             </ul>
-          </Accordion.Content>
-        </Accordion.Item>
+          </AccordionContent>
+        </AccordionItem>
         <Accordion.Item value={'hard-skills'}>
           <Accordion.Trigger>hard-skills</Accordion.Trigger>
           <Accordion.Content>
@@ -47,7 +57,7 @@ export const ProfessionalInfo = memo(() => {
             </ul>
           </Accordion.Content>
         </Accordion.Item>
-      </Accordion.Root>
+      </AccordionRoot>
   )
 })
 ProfessionalInfo.displayName = 'ProfessionalInfo'
