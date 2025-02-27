@@ -23,16 +23,16 @@ export const SideIconsNav = memo(({onChangeAction, value}: {
                       onValueChange={(prev: InfoNames) => prev && onChangeAction(prev)
                       }
                       className={toggleGroupItemClasses}>
-      <ToggleGroup.Item className={getToggleItemClass('professional-info')}
-                        value={'professional-info'}>
+      <ToggleGroup.Item className={getToggleItemClass('professionalInfo')}
+                        value={'professionalInfo'}>
         <ProfSkillsIcon className={'hover:text-secondary-aqua'}/>
       </ToggleGroup.Item>
-      <ToggleGroup.Item className={getToggleItemClass('personal-info')}
-                        value={'personal-info'}>
+      <ToggleGroup.Item className={getToggleItemClass('personalInfo')}
+                        value={'personalInfo'}>
         <PersonSkillsIcon className={'hover:text-secondary-aqua'}/>
       </ToggleGroup.Item>
-      <ToggleGroup.Item className={getToggleItemClass('hobbies-info')}
-                        value={'hobbies-info'}>
+      <ToggleGroup.Item className={getToggleItemClass('hobbiesInfo')}
+                        value={'hobbiesInfo'}>
         <HobbiesIcon className={'hover:text-secondary-aqua '}/>
       </ToggleGroup.Item>
     </ToggleGroup.Root>

@@ -5,12 +5,12 @@ import {memo, useCallback, useState} from "react";
 import {Description} from "@/widgets/Sidebar/Description/Description";
 
 
-export type InfoNames = 'professional-info' | 'personal-info' | 'hobbies-info'
+export type InfoNames = 'professionalInfo' | 'personalInfo' | 'hobbiesInfo'
 
 
 export const Sidebar = memo(() => {
   console.log('Sidebar render')
-  const [value, setValue] = useState<InfoNames>('personal-info')
+  const [value, setValue] = useState<InfoNames>('personalInfo')
   const handleValueChange = useCallback((newValue: InfoNames) => {
     setValue(newValue);
   }, []);
