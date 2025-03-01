@@ -23,15 +23,15 @@ export const ListItem = forwardRef<HTMLLIElement, NavigationMenuItemProps>(({chi
 ListItem.displayName = 'ListItem'
 
 
-type LinkItemProps = LinkProps & { children: ReactNode }
+type LinkItemProps = LinkProps & { children: ReactNode, color?: string }
 
-export const LinkItem = forwardRef<HTMLAnchorElement, LinkItemProps>(({href, children, ...props}, ref) => {
+export const LinkItem = forwardRef<HTMLAnchorElement, LinkItemProps>(({href, children, color, ...props}, ref) => {
   const pathname = usePathname();
   const isActive = href === pathname;
 
   return (
       <NavigationMenu.Link asChild>
-        <Link href={href} {...props} className={`${isActive ? 'text-accent-aqua' : ''} hover:opacity-80`}
+        <Link href={href} {...props} className={`${isActive ? `${color}` : ''} hover:opacity-80`}
               ref={ref}>{children}</Link>
       </NavigationMenu.Link>
   );

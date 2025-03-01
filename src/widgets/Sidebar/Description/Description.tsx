@@ -36,8 +36,8 @@ export const Description = memo(({value}: {
       {
         title: "careerGoals",
         items: [
-          {title: "my_aspirations", href: "/about_me/aspirations"},
-          {title: "first_job_plans", href: "/about_me/first_job"},
+          {title: "my_aspirations", href: "/about_me/my_aspirations"},
+          {title: "first_job_plans", href: "/about_me/first_job_plans"},
         ],
       },
     ],
@@ -46,18 +46,13 @@ export const Description = memo(({value}: {
         title: "activities",
         items: [
           {title: "things_I_enjoy", href: "/about_me/things_I_enjoy"},
-          {title: "new_things_to_try", href: "/about_me/new_experiences"},
+          {title: "new_things_to_try", href: "/about_me/new_things_to_try"},
         ],
       },
     ],
   };
 
-  const iconColors = {
-    bio: "text-accent-pink",
-    interests: "text-accent-aqua",
-    skills: "text-accent-orange",
-    careerGoals: 'text-accent-violet'
-  };
-  return <InfoAccordion iconColors={iconColors} sections={INFO_DATA[value]} defaultOpen={'bio'}/>
+
+  return <InfoAccordion sections={INFO_DATA[value]} defaultOpen={'bio'}/>
 })
 Description.displayName = 'Description'

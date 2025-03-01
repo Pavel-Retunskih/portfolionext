@@ -21,8 +21,12 @@ export default async function AboutPage({params}: { params: Promise<{ slug: stri
   }
   const data = await res.json()
 
-  return (<div className={'max-w-[624px] border-r-2 pl-6 border-r-lines overflow-scroll'}>
+  return (<div className={'max-w-[624px] border-r-2 pl-6 border-r-lines'}>
 
-    {data.pageData.description}
+
+    <div
+        className="scrollbar-h-2.5 scrollbar scrollbar-thumb-secondary-grey  h-[794px] overflow-y-scroll">
+      {data.pageData.description}
+    </div>
   </div>)
 }

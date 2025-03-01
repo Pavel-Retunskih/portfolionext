@@ -17,7 +17,7 @@ export const SideIconsNav = memo(({onChangeAction, value}: {
 
   const toggleGroupItemClasses =
       "flex gap-9 items-center justify-center flex-col"
-  return (<div className={'w-12 border-r-2 border-r-lines'}>
+  return (<div className={'w-12 border-r-2 border-r-lines hidden md:block'}>
     <ToggleGroup.Root type='single' defaultValue={value}
                       onValueChange={(prev: InfoNames) => prev && onChangeAction(prev)
                       }
