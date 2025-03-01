@@ -8,22 +8,20 @@ import {InfoAccordion} from "@/widgets/Sidebar/Description/InfoAccordion/InfoAcc
 export const Description = memo(({value}: {
   value: InfoNames
 }) => {
-  console.log('Description render')
-
   const INFO_DATA = {
     ['personalInfo']: [
       {
         title: "bio",
         items: [
-          {title: "who am I", href: "/about_me/who_i_am"},
-          {title: "where am I from", href: "/about_me/where_am_I_from"},
+          {title: "who_am_I", href: "/about_me/who_i_am"},
+          {title: "where_am_I_from", href: "/about_me/where_am_I_from"},
         ],
       },
       {
         title: "interests",
         items: [
-          {title: "what interests me most", href: "/about_me/what_interests_me_most"},
-          {title: "where am I going", href: "/about_me/where_am_I_going"},
+          {title: "what_interests_me_most", href: "/about_me/what_interests_me_most"},
+          {title: "where_am_I_going", href: "/about_me/where_am_I_going"},
         ],
       },
     ],
@@ -31,15 +29,15 @@ export const Description = memo(({value}: {
       {
         title: "skills",
         items: [
-          {title: "my technical skills", href: "/work/technical_skills"},
-          {title: "what I'm learning", href: "/work/learning"},
+          {title: "my_technical_skills", href: "/about_me/technical_skills"},
+          {title: "project_impact", href: "/about_me/project_impact"},
         ],
       },
       {
         title: "careerGoals",
         items: [
-          {title: "my aspirations", href: "/work/aspirations"},
-          {title: "first job plans", href: "/work/first_job"},
+          {title: "my_aspirations", href: "/about_me/aspirations"},
+          {title: "first_job_plans", href: "/about_me/first_job"},
         ],
       },
     ],
@@ -47,14 +45,13 @@ export const Description = memo(({value}: {
       {
         title: "activities",
         items: [
-          {title: "things I enjoy", href: "/hobby/things_I_enjoy"},
-          {title: "new things to try", href: "/hobby/new_experiences"},
+          {title: "things_I_enjoy", href: "/about_me/things_I_enjoy"},
+          {title: "new_things_to_try", href: "/about_me/new_experiences"},
         ],
       },
     ],
   };
 
-  console.log(value)
   const iconColors = {
     bio: "text-accent-pink",
     interests: "text-accent-aqua",

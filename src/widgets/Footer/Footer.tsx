@@ -4,7 +4,7 @@ import LinkedInIcon from "@/assets/svg/LinkedInIcon";
 import {memo} from "react";
 
 export const Footer = memo(() => {
-  console.log('Footer render')
+
   return (
       <div className={'h-[50px] w-full flex items-center justify-between'}>
         <div className={'flex h-full items-center gap-3'}>

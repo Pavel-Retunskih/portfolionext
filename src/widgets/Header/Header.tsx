@@ -6,13 +6,10 @@ import {memo} from "react";
 
 
 export const Header = memo(() => {
- 
+
 
   const linkClass = 'text-[16px] border-r-2 border-r-lines flex items-center h-full ' +
       ' px-8'
-
-  console.log('Header render')
-
   return (
       <header className={'hidden md:block' + ' ' + ' w-full'}>
         <nav className={'flex h-[45px] w-full'}>

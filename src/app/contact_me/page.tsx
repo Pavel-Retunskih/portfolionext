@@ -10,7 +10,7 @@ export default function ContactMePage() {
   const [message, setMessage] = useState('');
 
 
-  return (<div className={'flex flex-col lg:flex-row lg:gap-10 md:ml-[300px] border-t border-t-lines'}>
+  return (<div className={'flex flex-col lg:flex-row lg:gap-10 border-t border-t-lines'}>
     <h3 className={'lg:hidden sm:flex items-center justify-start py-5 pl-4'}>_contact-me</h3>
     <form className={'flex flex-col gap-8 border-r  border-r-lines px-32 pt-28'}>
       <div className={'flex flex-col gap-1'}>
@@ -52,7 +52,6 @@ function CodeBlock({name, message, email}: { name: string, email: string, messag
   const [currentDate, setCurrentDate] = useState('');
 
   useEffect(() => {
-
     const date = new Date();
     const formattedDate = date.toLocaleString('en-GB', {weekday: 'short', day: '2-digit', month: 'short'});
     setCurrentDate(formattedDate);

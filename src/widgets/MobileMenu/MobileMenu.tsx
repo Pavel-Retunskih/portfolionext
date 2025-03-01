@@ -8,8 +8,6 @@ import {Burger} from "@/components/Burger/Burger";
 export function MobileMenu() {
   const [open, setOpen] = useState<boolean>(false);
 
-
-  console.log('Mobile menu render');
   return (
       <div className={'flex flex-col w-full max-w-screen-md md:hidden'}>
         <div className={'flex justify-between items-center border-b border-b-lines h-[50px] p-[18px]'}>

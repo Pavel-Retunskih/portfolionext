@@ -10,7 +10,6 @@ export const SideIconsNav = memo(({onChangeAction, value}: {
   onChangeAction: (value: InfoNames) => void,
   value: InfoNames
 }) => {
-  console.log('SideIconsNav render')
   const getToggleItemClass = useMemo(() => {
     return (itemValue: InfoNames) =>
         `${value === itemValue ? 'opacity-100' : 'opacity-40'}`;
