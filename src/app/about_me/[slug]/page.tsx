@@ -21,7 +21,7 @@ export default async function AboutPage({params}: { params: Promise<{ slug: stri
   }
   const data = await res.json()
 
-  return (<div className={'w-full max-w-[624px] border-r-2 pl-6 border-r-lines'}>
+  return (<div className={'max-w-[624px] border-r-2 pl-6 border-r-lines'}>
     {data.pageData.description}
   </div>)
 }

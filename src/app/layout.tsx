@@ -23,7 +23,7 @@ export default function RootLayout({children}: Readonly<{
       >
       <Analytics/>
       <div className={'flex items-center justify-center'}>
-        <div className={'m-[15px] max-w-[1782px] w-full md:m-[70px] px-5  border border-lines bg-primary-blue' +
+        <div className={'m-2 max-w-[1782px] w-full md:m-3 px-5  border border-lines bg-primary-blue' +
             ' rounded'}>
           <Header/>
           <MobileMenu/>

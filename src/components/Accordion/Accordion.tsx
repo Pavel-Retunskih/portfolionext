@@ -29,8 +29,8 @@ export const AccordionTrigger = forwardRef<HTMLButtonElement, Props>(
               {...props}
               ref={ref}
           >
-            {children}
             {icon}
+            {children}
           </Accordion.Trigger>
         </Accordion.Header>
     ),

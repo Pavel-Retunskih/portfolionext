@@ -35,11 +35,12 @@ export const InfoAccordion = memo(({sections, defaultOpen, iconColors}: InfoAcco
               <AccordionTrigger
                   icon={
                     <ArrowIcon
-                        className={"transition-transform duration-300 ease-[cubic-bezier(0.87,_0,_0.13,_1)] group-data-[state=open]:rotate-90"}/>
+                        className={"transition-transform mr-3 duration-300 ease-[cubic-bezier(0.87,_0,_0.13,_1)]" +
+                            " group-data-[state=open]:rotate-90"}/>
                   }
                   className={"flex gap-2 items-center group"}
               >
-                <FolderIcon className={iconColors?.[section.title] || "text-accent-pink"}/>
+                <FolderIcon className={iconColors?.[section.title] || "text-accent-pink" + ' ml-2'}/>
                 {section.title}
               </AccordionTrigger>
               <AccordionContent
