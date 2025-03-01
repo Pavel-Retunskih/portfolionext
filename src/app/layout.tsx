@@ -2,7 +2,7 @@ import {Fira_Code} from "next/font/google";
 import "./globals.css";
 import {Header} from "@/widgets/Header/Header";
 import {Footer} from "@/widgets/Footer/Footer";
-import {ReactNode, Suspense} from "react";
+import {ReactNode} from "react";
 import {Analytics} from "@vercel/analytics/react";
 import {MobileMenu} from "@/widgets/MobileMenu/MobileMenu";
 import {Sidebar} from "@/widgets/Sidebar/Sidebar";
