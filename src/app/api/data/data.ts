@@ -52,6 +52,43 @@ export const pages = [{
       'Implemented efficient pagination mechanisms to handle large datasets, improving both performance and user experience by breaking up data into manageable chunks.\n' +
       'Integrated search and filtering features, empowering users to find relevant information quickly, enhancing usability and engagement.\n' +
       'Developed customizable sorting functionalities, allowing users to organize data by various criteria, improving the management and accessibility of the information.'
+}, {
+  title: 'my_aspirations',
+  description: "I am driven by a passion for continuous learning and growth in front-end development. My goal is to deepen my expertise in modern web technologies, focusing on performance optimization, scalability, and maintainability.\n" +
+      "\n" +
+      "I aspire to master advanced concepts in Next.js, TypeScript, and Redux, refining my ability to build high-performance, well-structured applications. I'm particularly interested in server-side rendering (SSR), static site generation (SSG), and API integrations to create seamless user experiences.\n" +
+      "\n" +
+      "Beyond front-end development, I aim to explore backend technologies like Express.js and NestJS to become a more well-rounded full-stack developer. Writing clean, efficient, and scalable code while adhering to best practices such as SOLID, KISS, and DRY principles is a key part of my journey.\n" +
+      "\n" +
+      "Ultimately, my aspiration is to contribute to impactful projects, collaborate with like-minded developers, and continuously challenge myself to improve my skills.",
+}, {
+  title: 'first_job_plans',
+  description: "As I prepare for my first job in front-end development, my primary goal is to gain hands-on experience in building real-world applications while continuously improving my technical and problem-solving skills.\n" +
+      "\n" +
+      "I aim to work in a collaborative environment where I can apply my knowledge of React, Next.js, TypeScript, and Redux RTK Query while learning from experienced developers. I’m particularly interested in projects that involve server-side rendering (SSR), static site generation (SSG), and API integrations, allowing me to deepen my understanding of performance optimization and scalability.\n" +
+      "\n" +
+      "In my first job, I also want to develop strong professional habits, such as writing clean, maintainable code, effectively using Git for version control, and following best practices like SOLID and KISS principles. Additionally, I’m eager to contribute to UI/UX improvements using Radix UI, Styled Components, and React Hook Form to enhance user experience.\n" +
+      "\n" +
+      "Beyond coding, I see my first job as an opportunity to improve my communication skills, participate in code reviews, and understand agile development workflows. My goal is not only to grow as a developer but also to bring value to the team and the projects I work on."
+}, {
+  title: 'things_I_enjoy',
+  description: "Beyond coding, I have a deep passion for continuous learning and exploring new technologies. I enjoy solving complex problems, optimizing code, and improving UI/UX to create seamless user experiences.\n" +
+      "\n" +
+      "In my free time, I like to experiment with new frameworks and libraries, refining my development skills and staying up to date with industry trends. I also enjoy reading about software architecture, best practices, and design patterns, which helps me write cleaner and more efficient code.\n" +
+      "\n" +
+      "Apart from tech, I appreciate activities that challenge my creativity and logical thinking, whether it's playing strategy games, exploring new design concepts, or engaging in problem-solving tasks. I find great satisfaction in refactoring code, enhancing performance, and making things work better than before.\n" +
+      "\n" +
+      "Ultimately, I enjoy anything that allows me to build, improve, and innovate, whether it's through coding, design, or problem-solving."
+}, {
+  title: 'new_things_to_try',
+  description: "I'm always eager to explore new areas of development and expand my skill set. Some of the things I’m excited to dive into include:\n" +
+      "\n" +
+      "Backend Development – Learning more about Node.js, Express, and NestJS to understand how full-stack applications work.\n" +
+      "Performance Optimization – Experimenting with techniques to enhance app speed, reduce load times, and optimize rendering in React and Next.js.\n" +
+      "3D & Interactive Web Experiences – Exploring Three.js and WebGL to create visually engaging and dynamic applications.\n" +
+      "State Management Alternatives – Trying out Zustand, Recoil, and Jotai to see how they compare to Redux RTK Query.\n" +
+      "Testing & Quality Assurance – Getting more familiar with Jest, React Testing Library, and Cypress to improve code reliability and maintainability.\n" +
+      "Contributing to Open Source – Engaging with the developer community by contributing to projects and learning from experienced engineers."
 }
 
 ];
