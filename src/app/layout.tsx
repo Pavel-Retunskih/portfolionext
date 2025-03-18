@@ -29,7 +29,7 @@ export default function RootLayout({children}: Readonly<{ children: ReactNode }>
           {/* Mobile Menu */}
           <MobileMenu/>
           {/* Main content area that takes the remaining space */}
-          <main className="flex-1 flex overflow-auto">
+          <main className="flex-1 flex overflow-auto overflow-visible">
             <Sidebar/>
             {children}
           </main>

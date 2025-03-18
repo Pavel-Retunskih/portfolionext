@@ -9,6 +9,7 @@ export default {
     "./src/widgets/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+
     screens: {
       s: '345px',
       sm: '375px',
@@ -41,6 +42,7 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+
       },
       keyframes: {
         slideDown: {
@@ -56,6 +58,9 @@ export default {
         slideDown: "slideDown 300ms cubic-bezier(0.87, 0, 0.13, 1)",
         slideUp: "slideUp 300ms cubic-bezier(0.87, 0, 0.13, 1)",
       },
+      backgroundImage: {
+        'custom-bg': "url('/BackgroundBlurs@2x.png')",
+      }
     },
   },
 

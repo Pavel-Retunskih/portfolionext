@@ -1,10 +1,12 @@
 'use client'
 import Link from "next/link";
 
+
 export default function HelloPage() {
   return (
       <div
-          className="flex flex-col gap-8 lg:flex-row items-center justify-between">
+          style={{backgroundSize: '70%', backgroundPosition: '100% 30%'}}
+          className="flex flex-col gap-8 lg:flex-row items-center w-full justify-between  bg-custom-bg bg-no-repeat bg-auto">
         <div className="md:mt-14">
           <div>
             <p className="text-[18px] text-white">Hi all. I am</p>
@@ -25,9 +27,16 @@ export default function HelloPage() {
           </span>
           </p>
         </div>
+
+
         <div
-            className="hidden md:block w-[510px] h-[475px] border-[1px] border-[#0C1616] bg-gradient-to-br from-[#175553] to-[#43D9AD] backdrop-blur-xl opacity-60 shadow-inner shadow-white px-[30px] py-[35px]">
-          <div className="bg-black opacity-75 w-[240px] h-[405px]"></div>
+            className={'hidden md:flex flex-grow flex-col justify-center' +
+                +
+                    ' items-center  '}>
+          <div
+              className={`w-[510px] h-[475px] border-[1px] border-[#0C1616] bg-gradient-to-br from-[#175553] to-[#43D9AD] backdrop-blur-xl opacity-50 shadow-inner shadow-white px-[30px] py-[35px]`}>
+            <div className="bg-black opacity-75 w-[240px] h-[405px]"></div>
+          </div>
         </div>
       </div>
   );
