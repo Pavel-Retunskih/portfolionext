@@ -13,10 +13,9 @@ const ArrowIcon = (
         {...props}
         ref={ref}
     >
-      {/* Используйте currentColor для динамической заливки */}
       <path
           d="M4.94 6.36L0 1.41L1.41 0L7.77 6.36L1.41 12.72L0 11.31L4.94 6.36Z"
-          fill="currentColor" // Замена на currentColor
+          fill="currentColor"
       />
     </svg>
 );
