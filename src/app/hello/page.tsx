@@ -1,5 +1,6 @@
 'use client'
 import Link from "next/link";
+import {SnakeGame} from "@/components/SnakeGame/SnakeGame";
 
 
 export default function HelloPage() {
@@ -27,17 +28,7 @@ export default function HelloPage() {
           </span>
           </p>
         </div>
-
-
-        <div
-            className={'hidden md:flex flex-grow flex-col justify-center' +
-                +
-                    ' items-center  '}>
-          <div
-              className={`w-[510px] h-[475px] border-[1px] border-[#0C1616] bg-gradient-to-br from-[#175553] to-[#43D9AD] backdrop-blur-xl opacity-50 shadow-inner shadow-white px-[30px] py-[35px]`}>
-            <div className="bg-black opacity-75 w-[240px] h-[405px]"></div>
-          </div>
-        </div>
+        <SnakeGame/>
       </div>
   );
 }
