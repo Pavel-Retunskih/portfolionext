@@ -15,7 +15,7 @@ export function SnakeGame() {
   const [nextDirection, setNextDirection] = useState<Direction>("up");
   const [foodCount, setFoodCount] = useState<number>(0);
   const [foodPosition, setFoodPosition] = useState<Position | null>(null);
-  const [speed, _] = useState<number>(100);
+  const speed = 100;
   const foodPositionRef = useRef<Position | null>(null);
   const gridSize = 10;
 
