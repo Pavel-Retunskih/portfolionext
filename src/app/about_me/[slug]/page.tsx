@@ -1,11 +1,3 @@
-// async function getPageContent({title}: { title: string }) {
-//   if (!URL) {
-//     throw new Error('NEXT_PUBLIC_API_URL is not defined')
-//   }
-//   const res = await fetch(URL, {method: 'GET', body: JSON.stringify({title: title})})
-//   return await res.json()
-// }
-
 export async function generateStaticParams() {
 
   const res = await fetch(`https://re-tune.xyz/api`, {method: 'GET'})
@@ -21,11 +13,13 @@ export default async function AboutPage({params}: { params: Promise<{ slug: stri
   }
   const data = await res.json()
 
-  return (<div className={'max-w-[624px] border-r-2 pl-6 border-r-lines'}>
-
+  return (<div className={'max-w-[624px] border-r border-r-lines'}>
+    <div>
+      <span className={'border-r inline-block pl-4 pr-12 border-r-lines p-2'}>{slug}</span>
+    </div>
 
     <div
-        className="scrollbar-h-2.5 scrollbar scrollbar-thumb-secondary-grey  h-[794px] overflow-y-scroll">
+        className="scrollbar-h-2.5 scrollbar border-t pl-6 border-t-lines scrollbar-thumb-secondary-grey  h-[794px] overflow-y-scroll">
       {data.pageData.description}
     </div>
   </div>)

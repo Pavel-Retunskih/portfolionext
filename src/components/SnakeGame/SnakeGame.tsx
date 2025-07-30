@@ -15,7 +15,7 @@ export function SnakeGame() {
   const [nextDirection, setNextDirection] = useState<Direction>("up");
   const [foodCount, setFoodCount] = useState<number>(0);
   const [foodPosition, setFoodPosition] = useState<Position | null>(null);
-  const [speed, setSpeed] = useState<number>(100);
+  const speed = 100;
   const foodPositionRef = useRef<Position | null>(null);
   const gridSize = 10;
 
@@ -138,7 +138,7 @@ export function SnakeGame() {
 
     const gameInterval = setInterval(moveSnake, speed);
     return () => clearInterval(gameInterval);
-  }, [isRunning, nextDirection, speed]);
+  }, [isRunning, nextDirection, speed, moveSnake]);
 
   return (
       <div className="hidden md:flex flex-grow flex-col justify-center items-center">
