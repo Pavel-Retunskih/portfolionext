@@ -10,14 +10,15 @@ export const SideIconsNav = memo(({onChangeAction, value}: {
   onChangeAction: (value: InfoNames) => void,
   value: InfoNames
 }) => {
+
   const getToggleItemClass = useMemo(() => {
     return (itemValue: InfoNames) =>
         `${value === itemValue ? 'opacity-100' : 'opacity-40'}`;
   }, [value]);
 
   const toggleGroupItemClasses =
-      "flex gap-9 items-center justify-center flex-col"
-  return (<div className={'w-12 border-r-2 border-r-lines hidden md:block'}>
+      "flex justify-around md:gap-9 items-center justify-center flex-row  md:flex-col "
+  return (<div className={'w-full md:w-12 md:border-r-2 border-r-lines '}>
     <ToggleGroup.Root type='single' defaultValue={value}
                       onValueChange={(prev: InfoNames) => prev && onChangeAction(prev)
                       }
@@ -26,10 +27,12 @@ export const SideIconsNav = memo(({onChangeAction, value}: {
                         value={'professionalInfo'}>
         <ProfSkillsIcon className={'hover:text-secondary-aqua'}/>
       </ToggleGroup.Item>
+
       <ToggleGroup.Item className={getToggleItemClass('personalInfo')}
                         value={'personalInfo'}>
         <PersonSkillsIcon className={'hover:text-secondary-aqua'}/>
       </ToggleGroup.Item>
+
       <ToggleGroup.Item className={getToggleItemClass('hobbiesInfo')}
                         value={'hobbiesInfo'}>
         <HobbiesIcon className={'hover:text-secondary-aqua '}/>
