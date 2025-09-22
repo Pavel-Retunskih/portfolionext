@@ -4,11 +4,15 @@ import {
   AccordionContentProps,
   AccordionItemProps,
   AccordionSingleProps,
+  AccordionMultipleProps,
   AccordionTriggerProps
 } from "@radix-ui/react-accordion";
 
 
-export const AccordionRoot = forwardRef<HTMLDivElement, AccordionSingleProps>(({children, ...props}, ref) => {
+export const AccordionRoot = forwardRef<HTMLDivElement, AccordionSingleProps | AccordionMultipleProps>(({
+                                                                                                          children,
+                                                                                                          ...props
+                                                                                                        }, ref) => {
   return <Accordion.Root {...props} ref={ref}>{children}</Accordion.Root>
 })
 AccordionRoot.displayName = 'AccordionRoot'
