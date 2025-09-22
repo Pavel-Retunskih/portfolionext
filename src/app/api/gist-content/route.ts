@@ -16,7 +16,10 @@ export async function GET(request: NextRequest) {
   }
 
   const allowedHosts = new Set([
-    'api.github.com'])
+    'api.github.com',
+    'gist.githubusercontent.com',
+    'raw.githubusercontent.com'
+  ])
 
   if (urlObj.protocol !== 'https:' || !allowedHosts.has(urlObj.hostname)) {
     return NextResponse.json({error: 'Invalid URL or unsupported protocol'}, {status: 400});
