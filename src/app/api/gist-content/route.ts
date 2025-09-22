@@ -1,15 +1,29 @@
-import { NextRequest, NextResponse } from 'next/server';
+import {NextRequest, NextResponse} from 'next/server';
 
 export async function GET(request: NextRequest) {
-  const { searchParams } = new URL(request.url);
+  const {searchParams} = new URL(request.url);
   const rawUrl = searchParams.get('url');
 
   if (!rawUrl) {
-    return NextResponse.json({ error: 'URL parameter is required' }, { status: 400 });
+    return NextResponse.json({error: 'URL parameter is required'}, {status: 400});
+  }
+
+  let urlObj: URL;
+  try {
+    urlObj = new URL(rawUrl);
+  } catch {
+    return NextResponse.json({error: 'Invalid URL'}, {status: 400});
+  }
+
+  const allowedHosts = new Set([
+    'api.github.com'])
+
+  if (urlObj.protocol !== 'https:' || !allowedHosts.has(urlObj.hostname)) {
+    return NextResponse.json({error: 'Invalid URL or unsupported protocol'}, {status: 400});
   }
 
   if (!process.env.GITHUB_GISTS_TOKEN) {
-    return NextResponse.json({ error: 'GitHub token not found' }, { status: 500 });
+    return NextResponse.json({error: 'GitHub token not found'}, {status: 500});
   }
 
   try {

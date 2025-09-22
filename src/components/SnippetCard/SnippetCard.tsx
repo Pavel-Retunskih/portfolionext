@@ -16,7 +16,22 @@ export const SnippetCard: FC<Props> = ({gist, content, forkCount = 0}) => {
   const {files, created_at, description, owner: {login, avatar_url}} = gist;
   const filesData = Object.values(files);
   const fileName = filesData[0]?.filename || 'unknown';
-  const language = fileName.split('.').pop() || 'javascript';
+  const ext = fileName.includes('.') ? fileName.split('.').pop()!.toLowerCase() : '';
+  const langMap: Record<string, string> = {
+    js: 'javascript',
+    jsx: 'javascript',
+    ts: 'typescript',
+    tsx: 'typescript',
+    json: 'json',
+    css: 'css',
+    scss: 'scss',
+    html: 'xml',
+    md: 'markdown',
+    sh: 'bash',
+    yml: 'yaml',
+    yaml: 'yaml'
+  };
+  const language = langMap[ext] || (ext || 'text');
 
   return (
       <div className="w-[664px]">

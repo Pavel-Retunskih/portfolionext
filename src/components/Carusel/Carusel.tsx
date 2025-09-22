@@ -85,11 +85,16 @@ export function Carousel<T>({slides, options, children}: PropType<T>) {
 
     // Добавляем поддержку скролла колесиком мыши
     const handleWheel = (event: WheelEvent) => {
-      event.preventDefault()
-      if (event.deltaY > 0) {
-        emblaApi.scrollNext()
-      } else {
-        emblaApi.scrollPrev()
+      const goingNext = event.deltaY > 0
+      const canScroll = goingNext ? emblaApi.canScrollNext() : emblaApi.canScrollPrev()
+
+      if (canScroll) {
+        event.preventDefault()
+        if (goingNext) {
+          emblaApi.scrollNext()
+        } else {
+          emblaApi.scrollPrev()
+        }
       }
     }
 
@@ -99,7 +104,7 @@ export function Carousel<T>({slides, options, children}: PropType<T>) {
     return () => {
       emblaNode.removeEventListener('wheel', handleWheel)
     }
-  }, [emblaApi, tweenOpacity])
+  }, [emblaApi, setTweenFactor, tweenOpacity])
 
   return (
       <div className="overflow-hidden h-full" ref={emblaRef}>
