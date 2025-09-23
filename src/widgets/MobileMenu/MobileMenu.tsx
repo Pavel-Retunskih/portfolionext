@@ -1,15 +1,18 @@
 'use client'
 
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import Link from "next/link";
 import {Burger} from "@/components/Burger/Burger";
 
 
 export function MobileMenu() {
   const [open, setOpen] = useState<boolean>(false);
+  useEffect(() => {
+    document.body.style.overflowY = open ? 'hidden' : 'auto';
+  }, [open]);
 
   return (
-      <div className={'flex fixed  top-0 left-0 bg-primary-dark_blue z-50 flex-col w-full max-w-screen-md md:hidden'}>
+      <div className={'flex inset-0 bg-primary-dark_blue flex-col w-full max-w-screen-md md:hidden'}>
         <div className={'flex justify-between items-center border-b border-b-lines h-[50px] p-[18px]'}>
           <span className={'text-secondary-grey'}>Pavel_Retunskih</span>
           <Burger isOpen={open} setIsOpenAction={setOpen}/>
