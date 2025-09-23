@@ -17,15 +17,15 @@ export default function RootLayout({children}: Readonly<{ children: ReactNode }>
   return (
       <html lang="en">
       <body
-          className={`${firaCode.variable} bg-background flex flex-col items-center h-dvh `}
+          className={`${firaCode.variable} bg-background flex flex-col items-center`}
       >
       <Analytics/>
       <SpeedInsights/>
       <div
-          className="w-full max-w-[1782px] border border-lines bg-primary-blue rounded m-0 md:my-4 h-full flex flex-col justify-between ">
+          className="w-full max-w-[1782px] border border-lines bg-primary-blue rounded m-0 md:my-4 flex flex-col justify-between min-h-screen md:min-h-[calc(100vh-2rem)]">
         <Header/>
         <MobileMenu/>
-        <main className="flex flex-grow align-middle justify-around">
+        <main className="flex align-middle justify-around">
           {children}
         </main>
 
