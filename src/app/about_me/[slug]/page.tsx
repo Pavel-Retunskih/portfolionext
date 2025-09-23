@@ -13,9 +13,9 @@ export default async function AboutPage({params}: { params: Promise<{ slug: stri
   }
   const data = await res.json()
 
-  return <div className={'max-w-[624px] border-r border-r-lines'}>
+  return <div className={'max-w-[624px] my-4 md:mt-0 border-r border-r-lines'}>
     <div>
-      <span className={'border-r inline-block pl-4 pr-12 border-r-lines p-2'}>{slug}</span>
+      <span className={'hidden md:inline-block border-r  pl-4 pr-12 border-r-lines p-2'}>{slug}</span>
     </div>
 
     <div

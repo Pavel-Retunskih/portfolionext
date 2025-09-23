@@ -5,10 +5,10 @@ import {Sidebar} from "@/widgets/Sidebar/Sidebar";
 
 export const dynamic = "force-dynamic"
 export default function AboutMeLayout({children}: { children: ReactNode }) {
-  return <div className='flex w-full flex-col mt-14 md:flex-row'>
+  return <div className='flex w-full flex-col mt-4 md:flex-row'>
     <Sidebar/>
     {children}
-    <div className='h-[calc(100vh-130px)] overflow-hidden'>
+    <div className='hidden md:block h-[calc(100vh-190px)] overflow-hidden'>
       <SnippetsList/>
     </div>
   </div>
