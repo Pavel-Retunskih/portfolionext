@@ -64,8 +64,7 @@ export function Carousel<T>({slides, options, children}: PropType<T>) {
             }
 
             const tweenValue = 1 - Math.abs(diffToTarget * tweenFactor.current)
-            const opacity = numberWithinRange(tweenValue, 0, 1).toString()
-            emblaApi.slideNodes()[slideIndex].style.opacity = opacity
+            emblaApi.slideNodes()[slideIndex].style.opacity = numberWithinRange(tweenValue, 0, 1).toString()
           })
         })
       },
