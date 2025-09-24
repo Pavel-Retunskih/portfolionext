@@ -1,4 +1,4 @@
-import {Accordion} from 'radix-ui'
+import * as Accordion from '@radix-ui/react-accordion'
 import {forwardRef, ReactNode} from "react";
 import {
   AccordionContentProps,

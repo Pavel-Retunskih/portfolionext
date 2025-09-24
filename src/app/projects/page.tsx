@@ -1,34 +1,7 @@
 import {ProjectsFilters} from "@/components/ProjectsFilters/ProjectsFilter";
 import {ProjectsContent} from "@/components/ProjectsContent/ProjectsContent";
+import {Project} from "@/app/api/projects/data/data";
 
-
-interface Project {
-  title: string
-  description: string
-  technologies: string[]
-  category: string
-}
-
-const projects: Project[] = [
-  {
-    title: 'Portfolio Website',
-    description: 'Персональное портфолио с игрой Snake',
-    technologies: ['Next.js', 'TypeScript', 'Tailwind'],
-    category: 'Web'
-  },
-  {
-    title: 'E-commerce App',
-    description: 'Интернет-магазин с корзиной',
-    technologies: ['React', 'Node.js', 'MongoDB'],
-    category: 'Web'
-  },
-  {
-    title: 'Mobile Game',
-    description: 'Мобильная игра на React Native',
-    technologies: ['React Native', 'TypeScript'],
-    category: 'Mobile'
-  }
-]
 
 interface PageProps {
   searchParams: Promise<{
@@ -38,6 +11,8 @@ interface PageProps {
 }
 
 export default async function Projects({searchParams}: PageProps) {
+  const projects: Project[] = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/projects`).then(async (data) => await data.json());
+
   const params = await searchParams
 
   // Нормализуем параметры в массивы
@@ -49,7 +24,6 @@ export default async function Projects({searchParams}: PageProps) {
   const filteredProjects = projects.filter(project => {
     return selectedTechnologies.length === 0 ||
         selectedTechnologies.some(tech => project.technologies.includes(tech))
-
   })
 
   // Получаем уникальные значения
@@ -57,7 +31,7 @@ export default async function Projects({searchParams}: PageProps) {
 
 
   return (
-      <div className="flex gap-6 p-6 w-full">
+      <div className="flex flex-col md:flex-row gap-6 p-6 w-full flex-grow-1">
         <ProjectsFilters
             allTechnologies={allTechnologies}
             selectedTechnologies={selectedTechnologies}

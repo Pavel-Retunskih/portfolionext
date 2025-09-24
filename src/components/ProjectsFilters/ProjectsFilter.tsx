@@ -2,17 +2,16 @@
 
 import {useRouter, useSearchParams} from 'next/navigation'
 import {useCallback, useTransition} from 'react'
+import {AccordionContent, AccordionItem, AccordionRoot, AccordionTrigger} from "@/components/Accordion/Accordion";
+import ArrowIcon from "@/assets/svg/ArrowIcon";
+import {clsx} from "clsx";
 
 interface Props {
   allTechnologies: string[]
   selectedTechnologies: string[]
 }
 
-export function ProjectsFilters({
-                                  allTechnologies,
-                                  selectedTechnologies
-
-                                }: Props) {
+export function ProjectsFilters({allTechnologies, selectedTechnologies}: Props) {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [isPending, startTransition] = useTransition()
@@ -38,42 +37,51 @@ export function ProjectsFilters({
   }, [router, searchParams])
   return (
       <aside className={`w-64 space-y-6 transition-opacity ${isPending ? 'opacity-50' : 'opacity-100'} w-[300px]`}>
-        <div className="flex justify-between items-center">
-          <h2 className="text-lg font-semibold">
-            Фильтры
-            {isPending && <span className="ml-2 text-sm text-secondary-grey">загрузка...</span>}
-          </h2>
-        </div>
-
-        {/* Технологии */}
         <div>
-          <h3 className="font-medium mb-3">Технологии</h3>
           <div className="space-y-2">
-            {allTechnologies.map(tech => {
-              const isSelected = selectedTechnologies.includes(tech)
-              return (
-                  <label key={tech} className="flex items-center cursor-pointer">
-                    <div className="relative">
-                      <input
-                          type="checkbox"
-                          checked={isSelected}
-                          onChange={(e) => updateFilters('tech', tech, e.target.checked)}
-                          disabled={isPending}
-                          className="mr-2 accent-secondary-purple disabled:opacity-50"
-                      />
-                      {isPending && isSelected && (
-                          <div className="absolute inset-0 flex items-center justify-center">
-                            <div
-                                className="w-3 h-3 border border-secondary-purple border-t-transparent rounded-full animate-spin"></div>
+            <AccordionRoot type={'single'} collapsible>
+              <AccordionItem value={'technologies'}>
+                <AccordionTrigger icon={
+                  <ArrowIcon
+                      className={"transition-transform mr-3 duration-300 ease-[cubic-bezier(0.87,_0,_0.13,_1)]" +
+                          " group-data-[state=open]:rotate-90 "}/>
+                }
+                                  className={clsx(
+                                      "flex gap-2 items-center group"
+                                  )}>
+                  <h3>Технологии</h3>
+                </AccordionTrigger>
+                <AccordionContent>
+                  {allTechnologies.map(tech => {
+                    const isSelected = selectedTechnologies.includes(tech)
+                    return (
+                        <label key={tech} className="flex items-center cursor-pointer">
+                          <div className="relative">
+                            <input
+                                type="checkbox"
+                                checked={isSelected}
+                                onChange={(e) => updateFilters('tech', tech, e.target.checked)}
+                                disabled={isPending}
+                                className="mr-2 accent-secondary-purple disabled:opacity-50"
+                            />
+                            {isPending && isSelected && (
+                                <div className="absolute inset-0 flex items-center justify-center">
+                                  <div
+                                      className="w-3 h-3 border border-secondary-purple border-t-transparent rounded-full animate-spin"></div>
+                                </div>
+                            )}
                           </div>
-                      )}
-                    </div>
-                    <span className={`text-sm ${isPending ? 'text-secondary-grey' : ''}`}>
+                          <span className={`text-sm ${isPending ? 'text-secondary-grey' : ''}`}>
                   {tech}
                 </span>
-                  </label>
-              )
-            })}
+                        </label>
+                    )
+                  })}
+                </AccordionContent>
+              </AccordionItem>
+
+            </AccordionRoot>
+
           </div>
         </div>
         {/* Глобальный индикатор загрузки */}
