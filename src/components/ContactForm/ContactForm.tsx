@@ -6,12 +6,22 @@ type Props = {
   setEmail: (email: string) => void;
   setMessage: (message: string) => void;
   handleSubmit: () => void
+  isSubmitting: boolean;
 }
-export const ContactForm = ({setName, name, message, setMessage, setEmail, email, handleSubmit}: Props) => {
+export const ContactForm = ({
+                              setName,
+                              name,
+                              message,
+                              setMessage,
+                              setEmail,
+                              email,
+                              handleSubmit,
+                              isSubmitting
+                            }: Props) => {
 
 
   return (
-      <form className={'flex flex-col gap-8'}>
+      <form className={'flex items-center flex-col gap-8'}>
         <div className={'flex flex-col gap-1'}>
           <label htmlFor="name" className={'text-secondary-grey'}>_name:</label>
           <input type="text" id={'name'} name={'name'}
@@ -36,7 +46,14 @@ export const ContactForm = ({setName, name, message, setMessage, setEmail, email
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}/>
         </div>
-        <button onClick={handleSubmit}>submit-message</button>
+        <button
+            type="submit"
+            onClick={handleSubmit}
+            aria-label="Send contact message"
+            disabled={isSubmitting}
+        >
+          {isSubmitting ? 'Sending...' : 'submit-message'}
+        </button>
       </form>
   );
 };

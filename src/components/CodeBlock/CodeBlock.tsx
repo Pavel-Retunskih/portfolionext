@@ -1,8 +1,8 @@
 // @flow
 import * as React from 'react';
 import {useEffect, useState} from "react";
-import SyntaxHighlighter from "react-syntax-highlighter";
 import {gruvboxDark} from "react-syntax-highlighter/dist/esm/styles/hljs";
+import dynamic from "next/dynamic";
 
 type Props = {
   name: string,
@@ -15,19 +15,31 @@ export const CodeBlock = ({name, message, email}: Props) => {
   };
   const [currentDate, setCurrentDate] = useState('');
 
+  const SyntaxHighlighter = dynamic(() => import('react-syntax-highlighter'), {
+    ssr: false,
+    loading: () => <div>Loading code...</div>
+  });
+
   useEffect(() => {
     const date = new Date();
     const formattedDate = date.toLocaleString('en-GB', {weekday: 'short', day: '2-digit', month: 'short'});
     setCurrentDate(formattedDate);
   }, []);
+
+  const escapeHtml = (str: string) =>
+      str.replace(/[&<>'"]/g, (match) => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;',
+        '"': '&quot;', "'": '&#39;'
+      }[match] || match));
+
   const text = `
 const button = document.querySelector('#sendBtn');
 
 const message = {
-  name: "${name}",
-  email: "${email}",
-  message: "${message}",
-  date: "${currentDate}"
+  name: "${escapeHtml(name)}",
+  email: "${escapeHtml(email)}",
+  message: "${escapeHtml(message)}",
+  date: "${escapeHtml(currentDate)}"
 };
 
 button.addEventListener('click', () => {
