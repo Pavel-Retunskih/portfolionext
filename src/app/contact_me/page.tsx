@@ -5,9 +5,9 @@ import {ContactForm} from "@/components/ContactForm/ContactForm";
 import {useForm} from "@/app/contact_me/model/useForm";
 
 export default function ContactMePage() {
-  const {setName, setEmail, setMessage, message, name, email, handleSubmit} = useForm()
+  const {setName, setEmail, setMessage, message, name, email, handleSubmit, isSubmitting} = useForm()
 
-  return <div className={'flex justify-around flex-grow max-w-[1200px]'}>
+  return <div className={'flex md:flex-row flex-col justify-around flex-grow max-w-[1200px]'}>
     <h3 className={'lg:hidden sm:flex items-center justify-start py-5 pl-4'}>_contact-me</h3>
     <ContactForm
         name={name}
@@ -17,6 +17,7 @@ export default function ContactMePage() {
         setEmail={setEmail}
         setMessage={setMessage}
         handleSubmit={handleSubmit}
+        isSubmitting={isSubmitting}
     />
     <div className={'hidden md:block border-r border-r-lines'}>
       <CodeBlock

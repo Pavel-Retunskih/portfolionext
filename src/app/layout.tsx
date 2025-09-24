@@ -6,11 +6,23 @@ import {ReactNode} from "react";
 import {Analytics} from "@vercel/analytics/react";
 import {SpeedInsights} from "@vercel/speed-insights/next"
 import {ClientProvider} from "@/widgets/ClientProvider/ClientProvider";
+import {Metadata} from "next";
 
 const firaCode = Fira_Code({
   variable: "--firaCode",
   subsets: ["latin"],
 });
+export const metadata: Metadata = {
+  title: 'Pavel Retunskih - Frontend Developer Portfolio',
+  description: 'Portfolio of Pavel Retunskih, Frontend Developer specializing in React, Next.js, and TypeScript',
+  keywords: 'frontend developer, react, nextjs, typescript, portfolio',
+  authors: [{name: 'Pavel Retunskih'}],
+  openGraph: {
+    title: 'Pavel Retunskih - Frontend Developer',
+    description: 'Portfolio showcase with projects and skills',
+    images: ['/og-image.png'],
+  },
+};
 
 export default function RootLayout({children}: Readonly<{ children: ReactNode }>) {
 
