@@ -11,7 +11,7 @@ export const ClientProvider = ({children}: Props) => {
   return (
       <>
         <MobileMenu open={open} setOpenAction={setOpen}/>
-        <main className="flex align-middle justify-around w-full">
+        <main className="flex align-middle justify-around w-full flex-grow">
           {!open && children}
         </main>
       </>
