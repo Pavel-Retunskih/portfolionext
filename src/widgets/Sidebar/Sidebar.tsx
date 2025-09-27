@@ -15,9 +15,9 @@ export const Sidebar = memo(() => {
   }, []);
 
   return <aside
-      className='md:w-[301px] md:border-r-2 flex-col border-r-lines md:flex md:flex-row  '>
+      className='md:w-[301px] md:border-r-2 flex-col border-r-lines md:flex md:flex-row'>
     <SideIconsNav onChangeAction={handleValueChange} value={value}/>
-    <div className={'pl-4  w-[251px]'}>
+    <div className={'pl-4  w-[251px] pt-4'}>
       <span className={'hidden items-center justify-center text-secondary-white w-full md:flex'}>{value}</span>
       <Description value={value}/>
     </div>

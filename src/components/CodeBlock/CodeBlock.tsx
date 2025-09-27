@@ -1,8 +1,7 @@
-// @flow
-import * as React from 'react';
+'use client'
 import {useEffect, useState} from "react";
 import {gruvboxDark} from "react-syntax-highlighter/dist/esm/styles/hljs";
-import dynamic from "next/dynamic";
+import SyntaxHighlighter from "react-syntax-highlighter";
 
 type Props = {
   name: string,
@@ -14,11 +13,6 @@ export const CodeBlock = ({name, message, email}: Props) => {
     background: 'transparent',
   };
   const [currentDate, setCurrentDate] = useState('');
-
-  const SyntaxHighlighter = dynamic(() => import('react-syntax-highlighter'), {
-    ssr: false,
-    loading: () => <div>Loading code...</div>
-  });
 
   useEffect(() => {
     const date = new Date();

@@ -1,3 +1,8 @@
+import {Input} from "@/components/Input/Input";
+import {FormErrors} from "@/app/contact_me/model/useForm";
+import {FormEvent} from "react";
+import {TextArea} from "@/components/TextArea/TextArea";
+
 type Props = {
   name: string;
   email: string;
@@ -7,7 +12,9 @@ type Props = {
   setMessage: (message: string) => void;
   handleSubmit: () => void
   isSubmitting: boolean;
+  errors: FormErrors;
 }
+
 export const ContactForm = ({
                               setName,
                               name,
@@ -16,39 +23,23 @@ export const ContactForm = ({
                               setEmail,
                               email,
                               handleSubmit,
-                              isSubmitting
+                              isSubmitting,
+                              errors
                             }: Props) => {
 
+  const onSubmit = (e: FormEvent) => {
+    e.preventDefault(); // Предотвращаем стандартную отправку формы
+    handleSubmit();
+  };
 
   return (
-      <form className={'flex items-center flex-col gap-8'}>
-        <div className={'flex flex-col gap-1'}>
-          <label htmlFor="name" className={'text-secondary-grey'}>_name:</label>
-          <input type="text" id={'name'} name={'name'}
-                 className={'pl-3.5 autofill:bg-primary-blue w-[327px] border border-lines' +
-                     ' focus:outline-none focus:border-secondary-grey rounded-md bg-primary-blue'}
-                 value={name} onChange={(e) => setName(e.target.value)}/>
-        </div>
-        <div className={'flex flex-col gap-1'}>
-          <label htmlFor={'email'} className={'text-secondary-grey'}>_email:</label>
-          <input type="text" id={'email'} name={'email'}
-                 className={'pl-3.5 w-[327px] border autofill:bg-primary-blue border-lines focus:outline-none' +
-                     ' focus:border-secondary-grey rounded-md bg-primary-blue'}
-                 value={email} onChange={(e) => setEmail(e.target.value)}/>
-        </div>
-        <div className={'flex flex-col gap-1'}>
-          <label htmlFor={'message'} className={'text-secondary-grey'}>_message:</label>
-          <textarea name={'message'}
-                    className={'w-[327px] h-[145px] border focus:outline-none autofill:bg-primary-blue' +
-                        ' focus:border-secondary-grey' +
-                        ' rounded-md' +
-                        ' pl-3.5 border-lines bg-primary-blue'}
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}/>
-        </div>
+      <form className={'flex items-center flex-col gap-8 w-full'} onSubmit={onSubmit}>
+        <Input value={name} handleChange={setName} label={'_name:'} error={errors.name}></Input>
+        <Input handleChange={setEmail} value={email} label={'_email:'} error={errors.email}></Input>
+        <TextArea handleChange={setMessage} value={message} label={'_message:'} error={errors.message}></TextArea>
         <button
+            className={'py-3 px-6 bg-[#1C2B3A] rounded-lg'}
             type="submit"
-            onClick={handleSubmit}
             aria-label="Send contact message"
             disabled={isSubmitting}
         >

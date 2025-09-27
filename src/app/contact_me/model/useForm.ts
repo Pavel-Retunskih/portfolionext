@@ -1,6 +1,6 @@
 import {useState} from "react";
 
-type FormErrors = {
+export type FormErrors = {
   name?: string;
   email?: string;
   message?: string;
@@ -12,6 +12,7 @@ export const useForm = () => {
   const [message, setMessage] = useState('');
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const validateEmail = (email: string): boolean => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -43,9 +44,9 @@ export const useForm = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     if (!validateForm()) {
-      console.error('Ошибка валидации формы');
+      console.log('Ошибка валидации asdsad формы');
       return;
     }
 
@@ -53,7 +54,8 @@ export const useForm = () => {
 
     try {
       console.log({name, email, message});
-      resetForm();
+      setSuccess(true);
+
     } catch (error) {
       console.error('Ошибка отправки формы:', error);
     } finally {
@@ -61,14 +63,8 @@ export const useForm = () => {
     }
   };
 
-  const resetForm = () => {
-    setName('');
-    setEmail('');
-    setMessage('');
-    setErrors({});
-  };
-
   return {
+    success,
     name,
     setName,
     email,
@@ -78,7 +74,6 @@ export const useForm = () => {
     errors,
     isSubmitting,
     handleSubmit,
-    resetForm,
     isValid: Object.keys(errors).length === 0 && name && email && message
   };
 };
