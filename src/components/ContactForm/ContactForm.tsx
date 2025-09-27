@@ -34,9 +34,9 @@ export const ContactForm = ({
 
   return (
       <form className={'flex items-center flex-col gap-8 w-full'} onSubmit={onSubmit}>
-        <Input value={name} handleChange={setName} label={'_name:'} error={errors.name}></Input>
-        <Input handleChange={setEmail} value={email} label={'_email:'} error={errors.email}></Input>
-        <TextArea handleChange={setMessage} value={message} label={'_message:'} error={errors.message}></TextArea>
+        <Input id="name" value={name} handleChange={setName} label={'_name:'} error={errors.name} autoComplete="name" required />
+        <Input id="email" handleChange={setEmail} value={email} label={'_email:'} error={errors.email} type="email" autoComplete="email" required />
+        <TextArea id="message" handleChange={setMessage} value={message} label={'_message:'} error={errors.message} required />
         <button
             className={'py-3 px-6 bg-[#1C2B3A] rounded-lg'}
             type="submit"
