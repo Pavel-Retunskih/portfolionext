@@ -12,6 +12,7 @@ export const useForm = () => {
   const [message, setMessage] = useState('');
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const validateEmail = (email: string): boolean => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -53,6 +54,7 @@ export const useForm = () => {
 
     try {
       console.log({name, email, message});
+      setSuccess(true);
 
     } catch (error) {
       console.error('Ошибка отправки формы:', error);
@@ -62,6 +64,7 @@ export const useForm = () => {
   };
 
   return {
+    success,
     name,
     setName,
     email,

@@ -33,11 +33,12 @@ export const ContactForm = ({
   };
 
   return (
-      <form className={'flex items-center flex-col gap-8 px-8'} onSubmit={onSubmit}>
+      <form className={'flex items-center flex-col gap-8 w-full'} onSubmit={onSubmit}>
         <Input value={name} handleChange={setName} label={'_name:'} error={errors.name}></Input>
         <Input handleChange={setEmail} value={email} label={'_email:'} error={errors.email}></Input>
         <TextArea handleChange={setMessage} value={message} label={'_message:'} error={errors.message}></TextArea>
         <button
+            className={'py-3 px-6 bg-[#1C2B3A] rounded-lg'}
             type="submit"
             aria-label="Send contact message"
             disabled={isSubmitting}
