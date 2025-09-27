@@ -11,7 +11,6 @@ export default function ContactMePage() {
 
 
     <div className={'hidden md:block max-w-[300px] w-full border-r border-r-lines'}>
-      side navigation
     </div>
 
     <div className={'flex flex-col w-full '}>
