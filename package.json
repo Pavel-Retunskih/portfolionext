@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "analyze": "cross-env ANALYZE=true npm run build",
     "dev": "next dev --turbopack",
     "build:dev": "cross-env NODE_ENV=development next build",
     "start:dev": "next start",
@@ -11,6 +12,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@next/bundle-analyzer": "^15.5.4",
     "@radix-ui/react-accordion": "^1.2.3",
     "@radix-ui/react-navigation-menu": "^1.2.5",
     "@radix-ui/react-scroll-area": "^1.2.3",
