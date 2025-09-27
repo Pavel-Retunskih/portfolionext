@@ -7,7 +7,7 @@ import Link from "next/link";
 export const Footer = memo(() => {
 
   return (
-      <div className={'h-[50px] w-full flex items-center justify-between px-4 md:px-2'}>
+      <div className={'h-[50px] w-full flex items-center justify-between px-4 md:px-2 border-t border-t-lines'}>
         <div className={'flex h-full items-center gap-3'}>
           <p className={'max-w-[189px] text-nowrap'}>find me in:</p>
           <div className={'flex h-full'}>
