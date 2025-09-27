@@ -14,7 +14,7 @@ export const Header = memo(() => {
       <header className={'hidden md:block' + ' ' + ' w-full'}>
         <nav className={'flex h-[45px] w-full'}>
           <div className={'w-[301px] border-r-2 border-r-lines py-3 text-nowrap'}>
-            <h1 className={'text-base'}>
+            <h1 className={'text-base pl-8'}>
               Pavel_Retunskih</h1>
           </div>
           <div className={'flex items-center flex-grow h-full justify-between'}>
