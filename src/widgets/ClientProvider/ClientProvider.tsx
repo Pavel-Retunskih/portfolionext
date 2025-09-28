@@ -20,11 +20,11 @@ export const ClientProvider = ({children}: Props) => {
   return (
       <>
         <MobileMenu open={open} setOpenAction={setOpen} setNavigatingAction={setNavigating}/>
-        <main className="relative flex align-middle justify-around w-full flex-grow">
-          <div className={`${!open ? 'opacity-100' : 'opacity-0'} transition-opacity duration-0 w-full`}
-               aria-hidden={open || navigating}>
-            {children}
-          </div>
+        <main
+            className={`${!open ? 'opacity-100' : 'opacity-0'} transition-opacity duration-0relative flex align-middle justify-around w-full flex-grow`}>
+
+          {children}
+
           <div
               className={`absolute inset-0 transition-opacity duration-150 ${navigating ? 'opacity-100' +
                   ' pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
