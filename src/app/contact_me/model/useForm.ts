@@ -1,79 +1,71 @@
-import {useState} from "react";
+import {useCallback, useState} from "react";
+import {useForm as useRHForm} from "react-hook-form";
+import {z} from "zod";
+import {zodResolver} from "@hookform/resolvers/zod";
+import {sendMessage} from "@/app/contact_me/model/sendMessage";
 
-export type FormErrors = {
-  name?: string;
-  email?: string;
-  message?: string;
-};
+const formSchema = z.object({
+  name: z
+      .string()
+      .trim()
+      .min(2, {message: 'Имя должно содержать минимум 2 символа'}),
+  email: z.email({message: 'Введите корректный email'}),
+  message: z
+      .string()
+      .trim()
+      .min(10, {message: 'Сообщение должно содержать минимум 10 символов'}),
+});
+
+export type FormValues = z.infer<typeof formSchema>;
 
 export const useForm = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
-  const [errors, setErrors] = useState<FormErrors>({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [success, setSuccess] = useState(false);
 
-  const validateEmail = (email: string): boolean => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
-
-  const validateForm = (): boolean => {
-    const newErrors: FormErrors = {};
-
-    if (!name.trim()) {
-      newErrors.name = 'Имя обязательно для заполнения';
-    } else if (name.trim().length < 2) {
-      newErrors.name = 'Имя должно содержать минимум 2 символа';
-    }
-
-    if (!email.trim()) {
-      newErrors.email = 'Email обязателен для заполнения';
-    } else if (!validateEmail(email)) {
-      newErrors.email = 'Введите корректный email';
-    }
-
-    if (!message.trim()) {
-      newErrors.message = 'Сообщение обязательно для заполнения';
-    } else if (message.trim().length < 10) {
-      newErrors.message = 'Сообщение должно содержать минимум 10 символов';
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleSubmit = () => {
-    if (!validateForm()) {
-      console.log('Ошибка валидации asdsad формы');
-      return;
-    }
-
-    setIsSubmitting(true);
-
+  const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const {register, handleSubmit: rhfHandleSubmit, watch, formState, reset} = useRHForm<FormValues>({
+    resolver: zodResolver(formSchema),
+    mode: 'onChange',
+    defaultValues: {name: '', email: '', message: ''},
+  });
+  const onSubmit = useCallback(async (data: FormValues) => {
+    const payload: FormValues = {
+      name: data.name.trim(),
+      email: data.email.trim().toLowerCase(),
+      message: data.message.trim(),
+    };
     try {
-      console.log({name, email, message});
-      setSuccess(true);
+      await sendMessage(JSON.stringify(payload))
+      setStatus('success');
+      reset();
 
     } catch (error) {
-      console.error('Ошибка отправки формы:', error);
-    } finally {
-      setIsSubmitting(false);
+      setStatus('error');
     }
-  };
+
+  }, [reset]);
+
+  const handleReset = () => {
+    setStatus('idle')
+  }
+
+  const handleSubmit = useCallback(() => {
+    return rhfHandleSubmit(onSubmit)();
+  }, [onSubmit, rhfHandleSubmit]);
+  const isSuccess = status === 'success';
+  const isError = status === 'error';
+  const isIdle = status === 'idle';
 
   return {
-    success,
-    name,
-    setName,
-    email,
-    setEmail,
-    message,
-    setMessage,
-    errors,
-    isSubmitting,
+    email: watch('email'),
+    name: watch('name'),
+    message: watch('message'),
+    errors: formState.errors,
+    isSubmitting: formState.isSubmitting,
+    isValid: formState.isValid,
+    isError,
+    isSuccess,
+    isIdle,
     handleSubmit,
-    isValid: Object.keys(errors).length === 0 && name && email && message
+    register,
+    handleReset,
   };
 };
