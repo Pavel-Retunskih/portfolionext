@@ -12,7 +12,6 @@ export const ClientProvider = ({children}: Props) => {
   const [navigating, setNavigating] = useState<boolean>(false);
   const pathname = usePathname();
 
-  // Единственный эффект: выключаем overlay после смены маршрута
   useEffect(() => {
     if (navigating) setNavigating(false);
   }, [pathname]);
@@ -25,10 +24,10 @@ export const ClientProvider = ({children}: Props) => {
           {children}
 
           <div
-              className={`absolute inset-0 transition-opacity duration-150 ${navigating ? 'opacity-100' +
+              className={`absolute inset-0 transition-opacity duration-0 ${navigating ? 'opacity-100' +
                   ' pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
               aria-hidden="true">
-            <div className="absolute inset-0 bg-primary-blue/30 backdrop-blur-sm"/>
+            <div className="absolute inset-0 bg-primary-blue/50 backdrop-blur-sm"/>
           </div>
         </main>
       </>

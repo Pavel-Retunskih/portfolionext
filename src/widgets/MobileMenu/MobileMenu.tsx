@@ -19,9 +19,7 @@ export function MobileMenu({open, setOpenAction, setNavigatingAction}: Props) {
   const itemActive = 'border-l-2 border-l-accent-orange bg-primary-dark_blue/40 text-secondary-white';
 
   const onSelect = () => {
-    // Показать глобальный overlay сразу, чтобы не мигала старая страница
     setNavigatingAction(true);
-    // Закрываем меню после выбора пункта
     setOpenAction(false);
   }
 
