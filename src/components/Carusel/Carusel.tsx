@@ -109,7 +109,7 @@ export function Carousel<T>({slides, options, children}: PropType<T>) {
       <div className="overflow-hidden h-full select-none" ref={emblaRef}>
         <div className="flex flex-col h-full">
           {slides.map((slide, index) => (
-              <div key={index} className="flex-[0_0_33.333%] min-h-0 flex items-center justify-center p-4">
+              <div key={index} className="flex items-center justify-center p-8">
                 {children(slide, index)}
               </div>
           ))}
