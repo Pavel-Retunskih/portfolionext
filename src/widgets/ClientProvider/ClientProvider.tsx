@@ -21,7 +21,7 @@ export const ClientProvider = ({children}: Props) => {
       <>
         <MobileMenu open={open} setOpenAction={setOpen} setNavigatingAction={setNavigating}/>
         <main
-            className={`${!open ? 'opacity-100' : 'opacity-0'} transition-opacity duration-0 relative flex align-middle justify-around w-full flex-grow`}>
+            className={`${!open ? 'opacity-100' : 'opacity-0'} relative flex align-middle justify-around w-full flex-grow`}>
           {children}
 
           <div
