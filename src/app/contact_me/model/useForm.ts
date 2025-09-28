@@ -37,6 +37,7 @@ export const useForm = () => {
       setStatus('success');
       reset();
 
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       setStatus('error');
     }
