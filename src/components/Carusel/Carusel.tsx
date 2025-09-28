@@ -1,5 +1,5 @@
 'use client'
-import React, {ReactNode, useCallback, useEffect, useRef} from 'react'
+import React, {ReactNode, useCallback, useEffect, useRef, useState} from 'react'
 import {
   EmblaCarouselType,
   EmblaEventType,
@@ -27,6 +27,7 @@ export function Carousel<T>({slides, options, children}: PropType<T>) {
     ...options
   })
   const tweenFactor = useRef(0)
+  const [ready, setReady] = useState(false)
 
   const setTweenFactor = useCallback((emblaApi: EmblaCarouselType) => {
     tweenFactor.current = TWEEN_FACTOR_BASE * emblaApi.scrollSnapList().length
@@ -76,6 +77,7 @@ export function Carousel<T>({slides, options, children}: PropType<T>) {
 
     setTweenFactor(emblaApi)
     tweenOpacity(emblaApi)
+    setReady(true)
     emblaApi
         .on('reInit', setTweenFactor)
         .on('reInit', tweenOpacity)
@@ -106,10 +108,10 @@ export function Carousel<T>({slides, options, children}: PropType<T>) {
   }, [emblaApi, setTweenFactor, tweenOpacity])
 
   return (
-      <div className="overflow-hidden h-full select-none" ref={emblaRef}>
+      <div className={`overflow-hidden h-full select-none transition-opacity duration-150 ${ready ? 'opacity-100' : 'opacity-0'}`} ref={emblaRef}>
         <div className="flex flex-col h-full">
           {slides.map((slide, index) => (
-              <div key={index} className="flex items-center justify-center p-8">
+              <div key={index} className="flex-[0_0_auto] flex items-stretch justify-center p-4">
                 {children(slide, index)}
               </div>
           ))}

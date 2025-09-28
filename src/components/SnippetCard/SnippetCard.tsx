@@ -61,7 +61,7 @@ export const SnippetCard: FC<Props> = ({gist, content, forkCount = 0}) => {
             <span className="text-xs md:text-sm text-secondary-grey">{fileName}</span>
             <Link href={html_url} target="_blank" rel="noreferrer" aria-label="View gist on GitHub"
                   className="flex items-center gap-2 text-secondary-grey hover:text-secondary-white transition-colors">
-              <GithubIcon className="h-4 w-4"/>
+              <GithubIcon/>
               <span className="hidden sm:inline text-xs">View</span>
             </Link>
           </div>
