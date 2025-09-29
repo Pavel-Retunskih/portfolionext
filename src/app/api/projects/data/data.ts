@@ -9,19 +9,25 @@ export const projects: Project[] = [
   {
     title: 'Portfolio Website',
     description: 'Персональное портфолио с игрой Snake',
-    technologies: ['Next.js', 'TypeScript', 'Tailwind'],
+    technologies: ['Next.js', 'TypeScript', 'Tailwind', 'Nest.js', 'Postgresql'],
     category: 'Web'
   },
   {
     title: 'E-commerce App',
     description: 'Интернет-магазин с корзиной',
-    technologies: ['React', 'Node.js', 'MongoDB'],
+    technologies: ['React', 'Redux', 'Node.js', 'MongoDB', 'Mongoose'],
     category: 'Web'
   },
   {
     title: 'Mobile Game',
     description: 'Мобильная игра на React Native',
-    technologies: ['React Native', 'TypeScript'],
+    technologies: ['TypeScript', 'Graphql'],
     category: 'Mobile'
+  },
+  {
+    title: 'Vue.js App',
+    description: 'Интернет-магазин с корзиной',
+    technologies: ['Vue', 'TypeScript', 'Vite'],
+    category: 'Web'
   }
 ]

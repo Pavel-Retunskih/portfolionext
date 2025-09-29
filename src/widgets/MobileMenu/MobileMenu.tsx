@@ -1,7 +1,7 @@
 'use client'
 
 import {Dispatch, SetStateAction} from "react";
-import Link from "next/link";
+import Link, {useLinkStatus} from "next/link";
 import {Burger} from "@/components/Burger/Burger";
 import {usePathname} from "next/navigation";
 import clsx from "clsx";
