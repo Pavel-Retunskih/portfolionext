@@ -11,7 +11,7 @@ interface PageProps {
 }
 
 export default async function Projects({searchParams}: PageProps) {
-  const projects: Project[] = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/projects`).then(async (data) => await data.json());
+  const projects: Project[] = await fetch(`${process.env.API_URL || 'http://localhost:3000'}/api/projects`).then(async (data) => await data.json());
 
   const params = await searchParams
 
