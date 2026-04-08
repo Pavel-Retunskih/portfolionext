@@ -7,138 +7,165 @@ import {FoodCounter} from "@/components/SnakeGame/FoodCounter/FoodCounter";
 type Position = { x: number; y: number };
 type Direction = 'up' | 'down' | 'right' | 'left';
 
+const FIELD_WIDTH = 238;
+const FIELD_HEIGHT = 405;
+const GRID_SIZE = 16;
+const SPEED = 100;
+const MAX_FOOD = 10;
+
+const OPPOSITE: Record<Direction, Direction> = {
+  up: 'down',
+  down: 'up',
+  left: 'right',
+  right: 'left',
+};
+
 export function SnakeGame() {
   const [isRunning, setIsRunning] = useState<boolean>(false);
   const [gameStatus, setGameStatus] = useState<'start' | 'win' | 'lose' | 'idle'>("idle");
   const [snake, setSnake] = useState<Position[]>([{x: 100, y: 100}]);
-  const [direction, setDirection] = useState<Direction>("up");
-  const [nextDirection, setNextDirection] = useState<Direction>("up");
   const [foodCount, setFoodCount] = useState<number>(0);
   const [foodPosition, setFoodPosition] = useState<Position | null>(null);
-  const speed = 100;
-  const foodPositionRef = useRef<Position | null>(null);
-  const gridSize = 10;
 
+  // Refs to avoid stale closures in the game loop
+  const directionRef = useRef<Direction>("up");
+  const nextDirectionRef = useRef<Direction>("up");
+  const snakeRef = useRef<Position[]>([{x: 100, y: 100}]);
+  const foodPositionRef = useRef<Position | null>(null);
+  const isRunningRef = useRef<boolean>(false);
 
   useEffect(() => {
     foodPositionRef.current = foodPosition;
   }, [foodPosition]);
 
-
-  const startGame = () => {
-    setIsRunning(true);
-    setGameStatus("start");
-    setSnake([{x: 100, y: 100}, {x: 110, y: 100}, {x: 120, y: 100}]);
-    setDirection("up");
-    setNextDirection("up");
-    setFoodCount(0);
-    spawnFood();
-  };
-  const gameOver = () => {
-    setIsRunning(false);
-    setGameStatus("lose");
-  };
-
-  const spawnFood = useCallback(() => {
-    const maxX = Math.floor(238 / gridSize);
-    const maxY = Math.floor(405 / gridSize);
-
-    let attempts = 0;
-    let newFood: Position;
-
-    do {
-      newFood = {
-        x: Math.floor(Math.random() * maxX) * gridSize,
-        y: Math.floor(Math.random() * maxY) * gridSize,
-      };
-      attempts++;
-    } while (snake.some(s => s.x === newFood.x && s.y === newFood.y) && attempts < 100);
-
-    setFoodPosition(newFood);
+  useEffect(() => {
+    snakeRef.current = snake;
   }, [snake]);
 
+  const spawnFood = useCallback(() => {
+    const maxX = Math.floor(FIELD_WIDTH / GRID_SIZE);
+    const maxY = Math.floor(FIELD_HEIGHT / GRID_SIZE);
+    const currentSnake = snakeRef.current;
+
+    let newFood: Position;
+    let attempts = 0;
+    do {
+      newFood = {
+        x: Math.floor(Math.random() * maxX) * GRID_SIZE,
+        y: Math.floor(Math.random() * maxY) * GRID_SIZE,
+      };
+      attempts++;
+    } while (currentSnake.some(s => s.x === newFood.x && s.y === newFood.y) && attempts < 100);
+
+    setFoodPosition(newFood);
+    foodPositionRef.current = newFood;
+  }, []);
+
+  const startGame = useCallback(() => {
+    const initialSnake = [{x: 96, y: 96}, {x: 112, y: 96}, {x: 128, y: 96}];
+    snakeRef.current = initialSnake;
+    directionRef.current = "up";
+    nextDirectionRef.current = "up";
+
+    setIsRunning(true);
+    isRunningRef.current = true;
+    setGameStatus("start");
+    setSnake(initialSnake);
+    setFoodCount(0);
+    spawnFood();
+  }, [spawnFood]);
+
+  const gameOver = useCallback(() => {
+    setIsRunning(false);
+    isRunningRef.current = false;
+    setGameStatus("lose");
+  }, []);
+
   const moveSnake = useCallback(() => {
-    setDirection(nextDirection);
+    directionRef.current = nextDirectionRef.current;
+    const currentDir = directionRef.current;
 
     setSnake(prevSnake => {
       const head = {...prevSnake[0]};
 
-      switch (nextDirection) {
-        case 'up':
-          head.y -= gridSize;
-          break;
-        case 'down':
-          head.y += gridSize;
-          break;
-        case 'left':
-          head.x -= gridSize;
-          break;
-        case 'right':
-          head.x += gridSize;
-          break;
+      switch (currentDir) {
+        case 'up':    head.y -= GRID_SIZE; break;
+        case 'down':  head.y += GRID_SIZE; break;
+        case 'left':  head.x -= GRID_SIZE; break;
+        case 'right': head.x += GRID_SIZE; break;
       }
 
-      if (
-          head.x < 0 || head.x >= 238 ||
-          head.y < 0 || head.y >= 405 ||
-          prevSnake.some((segment, index) => index > 0 && segment.x === head.x && segment.y === head.y)
-      ) {
+      const hitWall = head.x < 0 || head.x >= FIELD_WIDTH || head.y < 0 || head.y >= FIELD_HEIGHT;
+      const hitSelf = prevSnake.some((seg, i) => i > 0 && seg.x === head.x && seg.y === head.y);
+
+      if (hitWall || hitSelf) {
         gameOver();
         return prevSnake;
       }
 
       const newSnake = [head, ...prevSnake];
-
       const currentFood = foodPositionRef.current;
-      const isFoodEaten = currentFood && head.x === currentFood.x && head.y === currentFood.y;
 
-      if (isFoodEaten) {
+      if (currentFood && head.x === currentFood.x && head.y === currentFood.y) {
         setFoodCount(prev => {
-          console.log('Съел еду', prev);
-          return prev + 1;
+          const next = prev + 1;
+          if (next >= MAX_FOOD) {
+            setIsRunning(false);
+            isRunningRef.current = false;
+            setGameStatus("win");
+          } else {
+            spawnFood();
+          }
+          return next;
         });
         setFoodPosition(null);
-        spawnFood();
-        return newSnake; // растёт
+        foodPositionRef.current = null;
+        snakeRef.current = newSnake;
+        return newSnake;
       }
 
-      newSnake.pop(); // не еда — обычный ход
+      newSnake.pop();
+      snakeRef.current = newSnake;
       return newSnake;
     });
-  }, [nextDirection, spawnFood, gridSize]);
+  }, [gameOver, spawnFood]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (!isRunning) return;
+      if (!isRunningRef.current) return;
 
-      switch (e.key) {
-        case 'ArrowUp':
-          if (direction !== 'down') setNextDirection('up');
-          break;
-        case 'ArrowDown':
-          if (direction !== 'up') setNextDirection('down');
-          break;
-        case 'ArrowLeft':
-          if (direction !== 'right') setNextDirection('left');
-          break;
-        case 'ArrowRight':
-          if (direction !== 'left') setNextDirection('right');
-          break;
-      }
+      const keyMap: Record<string, Direction> = {
+        ArrowUp: 'up',
+        ArrowDown: 'down',
+        ArrowLeft: 'left',
+        ArrowRight: 'right',
+      };
+
+      const newDir = keyMap[e.key];
+      if (!newDir) return;
+
+      // Prevent reversing into itself
+      if (newDir === OPPOSITE[directionRef.current]) return;
+
+      e.preventDefault();
+      nextDirectionRef.current = newDir;
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isRunning, direction]);
+  }, []);
 
+  const handleDirectionButton = useCallback((dir: Direction) => {
+    if (!isRunningRef.current) return;
+    if (dir === OPPOSITE[directionRef.current]) return;
+    nextDirectionRef.current = dir;
+  }, []);
 
   useEffect(() => {
     if (!isRunning) return;
-
-
-    const gameInterval = setInterval(moveSnake, speed);
+    const gameInterval = setInterval(moveSnake, SPEED);
     return () => clearInterval(gameInterval);
-  }, [isRunning, nextDirection, speed, moveSnake]);
+  }, [isRunning, moveSnake]);
 
   return (
       <div className="hidden md:flex flex-grow flex-col justify-center items-center">
@@ -149,17 +176,12 @@ export function SnakeGame() {
               onStartGame={startGame}
               snake={snake}
               foodPosition={foodPosition}
-              gridSize={gridSize}
+              gridSize={GRID_SIZE}
           />
           <div className="flex flex-col items-center justify-between">
             <div>
-              <GameControls setSnakeDirection={setNextDirection}/>
-              <FoodCounter foodCount={foodCount}/>
-            </div>
-            <div className="flex items-center justify-end w-full">
-              <button className="border border-secondary-white rounded-xl px-2 py-2 text-secondary-white">
-                Skip
-              </button>
+              <GameControls setSnakeDirection={handleDirectionButton}/>
+              <FoodCounter foodCount={foodCount} maxFood={MAX_FOOD}/>
             </div>
           </div>
         </div>
